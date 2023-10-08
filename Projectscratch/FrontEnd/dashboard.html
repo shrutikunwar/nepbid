@@ -42,7 +42,7 @@
 
                                     function drawChart() {
                                         var data = google.visualization.arrayToDataTable([
-                                            ['Course', 'Java', 'C++', 'Python'],
+                                            ['Detail graph', 'Products', 'Sellers', 'Bidders'],
                                             ['2014', 1000, 400, 200],
                                             ['2015', 1170, 460, 250],
                                             ['2016', 660, 1120, 300]
@@ -50,8 +50,8 @@
 
                                         var options = {
                                             chart: {
-                                                title: 'Students & Courses',
-                                                subtitle: 'Students opting for courses',
+                                                title: 'Nep-Bid Details',
+                                                subtitle: 'Total users and products availability',
                                             },
                                             bars: 'Vertical' // direction
                                         };
@@ -109,11 +109,11 @@
                             </head>
 
                             <body>
-                                <section class="record">
+                                <section class="record" >
                                     <h1>Real time Records</h1>
-                                    <div class="dashboard">
+                                    <div class="dashboard" >
                                         <div class="dashboard-card" id="studentCard">
-                                            <h2>Total Students</h2>
+                                            <h2>Total Products</h2>
                                             <p id="studentCount">
                                                 <%=a %>
                                             </p>
@@ -121,7 +121,7 @@
 
 
                                         <div class="dashboard-card" id="teacherCard">
-                                            <h2>Total Teachers</h2>
+                                            <h2>Total Sellers</h2>
                                             <p id="teacherCount">
                                                 <%=b %>
                                             </p>
@@ -129,33 +129,13 @@
 
 
                                         <div class="dashboard-card" id="courseCard">
-                                            <h2>Total Courses</h2>
+                                            <h2>Total Bidders</h2>
                                             <p id="courseCount">
                                                 <%=course %>
                                             </p>
                                         </div>
 
 
-                                        <div class="dashboard-card" id="studentCard">
-                                            <h2>Total Branches</h2>
-                                            <p id="studentCount">0</p>
-                                        </div>
-
-
-                                        <div class="dashboard-card" id="teacherCard">
-                                            <h2>Total Users</h2>
-                                            <p id="teacherCount">
-                                                <%=users %>
-                                            </p>
-                                        </div>
-
-
-                                        <div class="dashboard-card" id="courseCard">
-                                            <h2>Total classes</h2>
-                                            <p id="courseCount">
-                                                <%=classes %>
-                                            </p>
-                                        </div>
 
 
                                     </div>
