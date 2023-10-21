@@ -52,6 +52,12 @@
         -- 4. select some of the fileds  from the bidder
             SELECT Bidderid,name,email,contact FROM Bidder;
 
+        -- 5. fetch sellers password from id
+            select spassword from sellers where Seller_id=?;
+
+        -- 6. update sellers password
+            update sellers set spassword =? where Seller_id=?;
+
 
 -- Product table extraction
             Desc newproduct;
