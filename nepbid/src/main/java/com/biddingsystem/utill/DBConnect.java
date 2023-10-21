@@ -9,9 +9,9 @@ public class DBConnect {
 	static Connection connection;
 	
 	
-    private static final String URL = "jdbc:mysql://localhost:3306/nepbid";
+    private static final String URL = "jdbc:mysql://localhost:3306/online_bidding_system";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "1424";
 
     public static Connection getConnection() throws SQLException {
     	try {

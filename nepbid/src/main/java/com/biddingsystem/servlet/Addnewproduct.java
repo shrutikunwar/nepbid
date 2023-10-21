@@ -19,8 +19,6 @@ import javax.servlet.http.Part;
 import com.biddingsystem.model.Products;
 import com.biddingsystem.utill.DBConnect;
 
-import DataInfoImpl.Datainfo;
-
 @WebServlet("/Addnewproduct")
 @MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
 maxFileSize=1024*1024*10,      // 10MB

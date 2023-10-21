@@ -2,15 +2,10 @@
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4" id="WebApp_ID">
 	<display-name>nepbid</display-name>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>home.jsp</welcome-file>
 	</welcome-file-list>
 	
-
+	
  <servlet>
         <servlet-name>TransactionServlet</servlet-name>
         <servlet-class>com.biddingsystem.servlet.TransactionServlet</servlet-class>
@@ -52,24 +47,16 @@
                 <url-pattern>/Addproduct</url-pattern>
     </servlet-mapping>
     
-      <servlet>
-          <servlet-name>BidderLogin</servlet-name>
-          <servlet-class>com.biddingsystem.servlet.BidderLogin</servlet-class>
-  </servlet>
-    
-    <servlet-mapping>
-                <servlet-name>BidderLogin</servlet-name>
-                <url-pattern>/bidder</url-pattern>
-    </servlet-mapping>
+      
     
        <servlet>
-          <servlet-name>sellerLogin</servlet-name>
-          <servlet-class>com.biddingsystem.servlet.sellerLogin</servlet-class>
+          <servlet-name>LoginServer</servlet-name>
+          <servlet-class>com.biddingsystem.servlet.LoginServer</servlet-class>
   </servlet>
     
     <servlet-mapping>
-                <servlet-name>sellerLogin</servlet-name>
-                <url-pattern>/seller</url-pattern>
+                <servlet-name>LoginServer</servlet-name>
+                <url-pattern>/login</url-pattern>
     </servlet-mapping>
     
       <servlet>
@@ -121,6 +108,17 @@
     <servlet-mapping>
                 <servlet-name>NotAlloted</servlet-name>
                 <url-pattern>/noallot</url-pattern>
+    </servlet-mapping>
+    
+    
+        <servlet>
+          <servlet-name>LogoutPage</servlet-name>
+          <servlet-class>com.biddingsystem.servlet.LogoutPage</servlet-class>
+  </servlet>
+    
+    <servlet-mapping>
+                <servlet-name>LogoutPage</servlet-name>
+                <url-pattern>/logout</url-pattern>
     </servlet-mapping>
  
  

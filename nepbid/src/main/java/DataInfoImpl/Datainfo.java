@@ -2,7 +2,6 @@ package DataInfoImpl;
 
 
 import java.io.File;
-import java.net.PasswordAuthentication;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,26 +10,25 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.ContextNotEmptyException;
-
 import com.biddingsystem.model.Bid;
 import com.biddingsystem.model.Bidder;
 import com.biddingsystem.model.Products;
 import com.biddingsystem.model.Transaction;
 import com.biddingsystem.utill.DBConnect;
-import com.mysql.cj.exceptions.RSAException;
 
 public class Datainfo {
 
+	public static Connection connection= null;
+	public static PreparedStatement  statement = null;
+	
 	 public List<Transaction> getAllTransactions() {
-	        Connection connection = null;
 	        List<Transaction> transactions = new ArrayList<>();
 
 	        try {
 	            connection = DBConnect.getConnection();
 	            String sql="SELECT * FROM sellers";
 
-	            PreparedStatement statement = connection.prepareStatement(sql);
+	            statement = connection.prepareStatement(sql);
 	            ResultSet rs = statement.executeQuery();
 
 	            while (rs.next()) {
@@ -48,9 +46,8 @@ public class Datainfo {
 	            e.printStackTrace();
 	        } finally {
 	            try {
-	                if (connection != null) {
-	                    connection.close();
-	                }
+	                connection.close();
+	                statement.close();
 	            } catch (SQLException e) {
 	                e.printStackTrace();
 	            }
@@ -62,14 +59,12 @@ public class Datainfo {
 	 
 	 
 	 public List<Bidder> getAllBidders() {
-	        Connection connection = null;
 	        List<Bidder> bidders = new ArrayList<>();
 
 	        try {
 	            connection = DBConnect.getConnection();
 	            String sql="SELECT Bidderid,name,email,contact FROM Bidder";
-
-	            PreparedStatement statement = connection.prepareStatement(sql);
+	            statement = connection.prepareStatement(sql);
 	            ResultSet rs = statement.executeQuery();
 
 	            while (rs.next()) {
@@ -85,14 +80,12 @@ public class Datainfo {
 	            e.printStackTrace();
 	        } finally {
 	            try {
-	                if (connection != null) {
-	                    connection.close();
-	                }
+	                connection.close();
+	                statement.close();
 	            } catch (SQLException e) {
 	                e.printStackTrace();
 	            }
 	        }
-
 	        return bidders;
 	    }
 	 
@@ -108,8 +101,8 @@ public class Datainfo {
 		 try {
 			 connection = DBConnect.getConnection();
 			 
-			 PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			 ResultSet resultSet = preparedStatement.executeQuery();
+			statement = connection.prepareStatement(sql);
+			 ResultSet resultSet = statement.executeQuery();
 			 
 			 while(resultSet.next()) {
 				 Products product = new Products();
@@ -129,9 +122,8 @@ public class Datainfo {
 		 
 		 finally {
 	            try {
-	                if (connection != null) {
-	                    connection.close();
-	                }
+	                connection.close();
+	                statement.close();
 	            } catch (SQLException e) {
 	                e.printStackTrace();
 	            }
@@ -149,17 +141,17 @@ public class Datainfo {
 	 }
 	 
 	 // fetch password for admin
-	 public String fetchpassword(int id) {
+	 public String fetchpassword(String id) {
 		 String pass="";
 		 
 		 try {
-			Connection connection = DBConnect.getConnection();
-			String sqlString = "select Adminpassword from admin where id=?";
-			PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+			connection = DBConnect.getConnection();
+			String sqlString = "select Adminpassword from admin where Adminusername=?";
+			statement = connection.prepareStatement(sqlString);
 			
-			preparedStatement.setInt(1, id);
+			statement.setString(1, id);
 			
-			ResultSet resultSet =  preparedStatement.executeQuery();
+			ResultSet resultSet =  statement.executeQuery();
 			while(resultSet.next()) {
 				pass=resultSet.getString("Adminpassword");
 			}
@@ -172,17 +164,25 @@ public class Datainfo {
 	 }
 	 
 	 // update admin password
-	 public void Updatepass(String s,int id) {
-		 String p = "update admin set Adminpassword='"+s+"' where id ='"+id+"'";
+	 public void Updatepass(String s,String id) {
+		 String p = "update admin set Adminpassword='"+s+"' where Adminusername ='"+id+"'";
 		 
 		 try {
-			 Connection connection = DBConnect.getConnection();
+			 connection = DBConnect.getConnection();
 			 Statement stmt = connection.createStatement();
 			 int r = stmt.executeUpdate(p);
 			
 		} catch (SQLException e) {
 			// TODO: handle exception
 		}
+		 finally {
+	            try {
+	                connection.close();
+	                statement.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
 
 	 }
 	 
@@ -190,13 +190,12 @@ public class Datainfo {
 	// fetch data from tables
 	 public Products getAllProductsDetails(int id){
 		 Products product = new Products();
-		 Connection connection = null;
 		 String sql = "select * from newproduct where productid='"+id+"'";
 		 try {
 			 connection = DBConnect.getConnection();
 			 
-			 PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			 ResultSet resultSet = preparedStatement.executeQuery();
+			 statement = connection.prepareStatement(sql);
+			 ResultSet resultSet = statement.executeQuery();
 			 
 			 while(resultSet.next()) {
 				 product.setProductid(resultSet.getInt("productid"));
@@ -216,9 +215,8 @@ public class Datainfo {
 		 
 		 finally {
 	            try {
-	                if (connection != null) {
-	                    connection.close();
-	                }
+	                connection.close();
+	                statement.close();
 	            } catch (SQLException e) {
 	                e.printStackTrace();
 	            }
@@ -234,10 +232,10 @@ public class Datainfo {
 		 String string = "select productid,bidderid,bidamount,status from bids where status='"+"pending"+"'";
 		 
 		 try {
-			Connection connection =DBConnect.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement(string);
+			connection =DBConnect.getConnection();
+			statement = connection.prepareStatement(string);
 			
-			ResultSet resultSet = preparedStatement.executeQuery();
+			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
 				Bid bid = new Bid();
@@ -254,22 +252,32 @@ public class Datainfo {
 			// TODO: handle exception
 		}
 		 
+		 finally {
+	            try {
+	                connection.close();
+	                statement.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+		 
+		 
 		 
 		 return tBids;
 	 }
 	 
-	 //fetch selllerid	 
+	 //fetch seller id	 
 	public int seller(int pid) {
 		int sid=0;
 		
 		String string = "select sellerid from newproduct where productid=?";
 		
 		try {
-			Connection connection = DBConnect.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement(string);
-			preparedStatement.setInt(1, pid);
+			connection = DBConnect.getConnection();
+			statement = connection.prepareStatement(string);
+			statement.setInt(1, pid);
 			
-			ResultSet resultSet = preparedStatement.executeQuery();
+			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
 				sid = resultSet.getInt("sellerid");
@@ -278,6 +286,15 @@ public class Datainfo {
 		} catch (SQLException e) {
 			// TODO: handle exception
 		}
+		
+		finally {
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 		
 		return sid;
 		
@@ -289,12 +306,12 @@ public class Datainfo {
 		boolean istrue = false;
 		String string = "select bidamount from bids where productid =?";
 		try {
-			Connection connection = DBConnect.getConnection();
-			PreparedStatement preparedStatement= connection.prepareStatement(string);
+			 connection = DBConnect.getConnection();
+			statement= connection.prepareStatement(string);
 			
-			preparedStatement.setInt(1, pid);
+			statement.setInt(1, pid);
 			
-			ResultSet resultSet = preparedStatement.executeQuery();
+			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
 				int a = resultSet.getInt("bidamount");
@@ -306,6 +323,15 @@ public class Datainfo {
 			// TODO: handle exception
 		}
 		
+		finally {
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+		
 		return istrue;
 	}
 	
@@ -315,12 +341,12 @@ public class Datainfo {
 		boolean istrue = false;
 		String string = "select * from bids where productid =?";
 		try {
-			Connection connection = DBConnect.getConnection();
-			PreparedStatement preparedStatement= connection.prepareStatement(string);
+			connection = DBConnect.getConnection();
+			statement= connection.prepareStatement(string);
 			
-			preparedStatement.setInt(1, id);
+			statement.setInt(1, id);
 			
-			ResultSet resultSet = preparedStatement.executeQuery();
+			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
 				istrue = true;
@@ -328,6 +354,14 @@ public class Datainfo {
 		} catch (SQLException e) {
 			// TODO: handle exception
 		}
+		finally {
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 		
 		return istrue;
 	}
@@ -339,13 +373,13 @@ public class Datainfo {
 		boolean istrue = false;
 		String string = "update bids set status=? where productid =?";
 		try {
-			Connection connection = DBConnect.getConnection();
-			PreparedStatement preparedStatement= connection.prepareStatement(string);
+			connection = DBConnect.getConnection();
+			statement= connection.prepareStatement(string);
 			
-			preparedStatement.setString(1, "alloted");
-			preparedStatement.setInt(2, id);
+			statement.setString(1, "alloted");
+			statement.setInt(2, id);
 			
-			int  rew = preparedStatement.executeUpdate();
+			int  rew = statement.executeUpdate();
 			
 			if(rew == 1) {
 				istrue = true;
@@ -354,6 +388,15 @@ public class Datainfo {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		
+		finally {
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 		
 		return istrue;
 	}
@@ -364,13 +407,13 @@ public class Datainfo {
 		boolean istrue = false;
 		String string = "update bids set status=? where productid =?";
 		try {
-			Connection connection = DBConnect.getConnection();
-			PreparedStatement preparedStatement= connection.prepareStatement(string);
+			connection = DBConnect.getConnection();
+			statement= connection.prepareStatement(string);
 			
-			preparedStatement.setString(1, "notalloted");
-			preparedStatement.setInt(2, id);
+			statement.setString(1, "notalloted");
+			statement.setInt(2, id);
 			
-			int  rew = preparedStatement.executeUpdate();
+			int  rew = statement.executeUpdate();
 			
 			if(rew == 1) {
 				istrue = true;
@@ -380,19 +423,28 @@ public class Datainfo {
 			e.printStackTrace();
 		}
 		
+		finally {
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+		
 		return istrue;
 	}
 	
 	
-	//extraact status
+	//extract status
 	public String status(int id) {
 		String s ="";
 		String string = "select status from bids where productid="+id+"";
 		try {
-			Connection connection = DBConnect.getConnection();
-			PreparedStatement preparedStatement= connection.prepareStatement(string);
+			connection = DBConnect.getConnection();
+			statement= connection.prepareStatement(string);
 			
-		     ResultSet resultSet= preparedStatement.executeQuery();
+		     ResultSet resultSet= statement.executeQuery();
 			
 			if(resultSet.next()) {
 				s = resultSet.getString("status");
@@ -401,6 +453,15 @@ public class Datainfo {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		
+		finally {
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 		
 		return s;
 	}
@@ -411,10 +472,10 @@ public class Datainfo {
 		 String string = "select productid,bidderid,bidamount,status from bids";
 		 
 		 try {
-			Connection connection =DBConnect.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement(string);
+			connection =DBConnect.getConnection();
+			statement = connection.prepareStatement(string);
 			
-			ResultSet resultSet = preparedStatement.executeQuery();
+			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
 				Bid bid = new Bid();
@@ -431,12 +492,255 @@ public class Datainfo {
 			// TODO: handle exception
 		}
 		 
+		 finally {
+	            try {
+	                connection.close();
+	                statement.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+		 
 		 
 		 return tBids;
 	}
 	
 	
-	 
-	 
+	
+	
+	public Products topProducts(){ 
+		Products product = new Products();
+		String string =" select * from newproduct where productid = (select productid from bids b1 where 3-1 = (select count(Distinct(b2.bidamount)) from bids b2 where b2.bidamount > b1.bidamount))";
+		
+		
+		try {
+			connection = DBConnect.getConnection();
+			statement = connection.prepareStatement(string);
+			
+			ResultSet resultSet = statement.executeQuery();
+			
+			while (resultSet.next()) {
+				
+				product.setProductid(resultSet.getInt("productid"));
+				 product.setProductname(resultSet.getString("productname"));			
+				 product.setProductcategory(resultSet.getString("category"));
+				 product.setStarting_bp(resultSet.getString("starting_bp"));
+				 product.setBidtime(resultSet.getString("bidtime"));
+				 product.setProductdescription(resultSet.getString("description"));
+				 product.setImage("assets"+File.separator+"productimages"+File.separator+resultSet.getString("image"));
+				 
+				 
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+		}
+		finally {
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+		
+		return product;
+	} 
+	
+	
+	// fetch the number of product bidder and sellers
+	
+	public int fetchproduct() {
+		int count = 0;
+		
+		String query = "select count(*) from newproduct";
+		
+		try {
+			connection = DBConnect.getConnection();
+			statement = connection.prepareStatement(query);
+			ResultSet resultSet = statement.executeQuery();
+			
+			while(resultSet.next()) {
+				count = resultSet.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		finally {
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+		
+		
+		return count;
+	}
+	
+	public int fetchseller() {
+		int count = 0;
+		
+		String query = "select count(*) from sellers";
+		
+		try {
+			connection = DBConnect.getConnection();
+			statement = connection.prepareStatement(query);
+			ResultSet resultSet = statement.executeQuery();
+			
+			while(resultSet.next()) {
+				count = resultSet.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		finally {
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+		
+		
+		return count;
+	}
+		
+	
+	public int fetchBidder() {
+		int count = 0;
+		
+		String query = "select count(*) from Bidder";
+		
+		try {
+			connection = DBConnect.getConnection();
+			statement = connection.prepareStatement(query);
+			ResultSet resultSet = statement.executeQuery();
+			
+			while(resultSet.next()) {
+				count = resultSet.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		finally {
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+		
+		
+		return count;
+	}
+
+
+	
+	// fetch sellers password
+
+	public String fetchSellerpassword(int parseInt) {
+		String pass="";
+		
+		String query = "select spassword from sellers where Seller_id=?";
+		try {
+			connection = DBConnect.getConnection();
+			statement = connection.prepareStatement(query);
+			
+			statement.setInt(1,parseInt);
+			ResultSet resultSet = statement.executeQuery();
+			
+			while(resultSet.next()) {
+				pass = resultSet.getString(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		finally {
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+		
+		return pass;
+	}
+
+
+	// update the sellers password
+	public void UpdateSellerpass(String newpassword, String id) {
+      String p = "update sellers set spassword ='"+newpassword+"' where Seller_id='"+Integer.parseInt(id)+"'";
+		 
+		 try {
+			 connection = DBConnect.getConnection();
+			 Statement stmt = connection.createStatement();
+			 
+			 int r = stmt.executeUpdate(p);
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+		}
+		 finally {
+	            try {
+	                connection.close();
+	                statement.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	}
+	
+	
+	// fetch seller name
+	public String sellername(int id) {
+		String name="";
+		String query= "select sname from sellers where Seller_id=?";
+		 try {
+			 connection = DBConnect.getConnection();
+				statement = connection.prepareStatement(query);
+				
+				statement.setInt(1,id);
+				ResultSet resultSet = statement.executeQuery();
+				
+				while(resultSet.next()) {
+					name = resultSet.getString(1);
+				}
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+		}
+		 finally {
+	            try {
+	                connection.close();
+	                statement.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+		
+		
+		return name;
+	}
+	
+		
+	
 	 
 }

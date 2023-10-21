@@ -5,7 +5,7 @@ public class Bidder {
 	private int bidderid;
     private String name;
     private String email;
-    private int contact;
+    private long contact;
     private String password;
     
 
@@ -34,12 +34,14 @@ public class Bidder {
         this.email = email;
     }
 
-    public int getContact() {
-        return contact;
-    }
+   
 
-    public void setContact(int contact) {
-        this.contact = contact;
+    public void setContact(long l) {
+        this.contact = l;
+    }
+    
+    public Long getContact() {
+        return contact;
     }
 
     public String getPassword() {
@@ -49,12 +51,6 @@ public class Bidder {
     public void setPassword(String password) {
         this.password = password;
     }
-
-	@Override
-	public String toString() {
-		return "Bidder [Bidderid=" + bidderid + ", name=" + name + ", email=" + email + ", contact=" + contact
-				+ ", password=" + password + "]";
-	}
-    
+   
     
 }

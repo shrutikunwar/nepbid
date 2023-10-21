@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 		<!DOCTYPE html>
 		<html>
@@ -168,17 +167,16 @@
 					<a class="p-2 text-dark" href="About.jsp">About Us</a>
 
 				</nav>
-				<a class="btn btn-outline-primary mr-3" href="Adminlogin.jsp">Admin Login</a>
 				<a class="btn btn-outline-primary" href="UserLogin.jsp">User Login</a>
 			</div>
 
 			<div class="container">
 
 
-				<form action="seller" method="post">
+				<form action="login" method="post">
 					<div class="title">Seller Login</div>
 					<div class="input-box underline">
-						<input type="text" name="email" placeholder="Enter Your email" required>
+						<input type="text" name="id" placeholder="Enter Your userid" required>
 						<div class="underline"></div>
 					</div>
 
@@ -188,19 +186,14 @@
 					</div>
 
 					<div class="input-box button">
+					<input type="hidden" name="action" value="seller">
 						<input  type="submit">
 					</div>
 
 					<a href="transaction.jsp">Or, register as a seller</a>
 				</form>
+				<div class="error-message hidden" id="error-message"></div>
 			</div>
-
-			<div class="message-box">
-				<c:if test="${not empty message}">
-					<span class="message ${success ? 'success' : 'error'}">${message}</span>
-				</c:if>
-			</div>
-
 
 		</body>
 

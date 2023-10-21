@@ -332,6 +332,7 @@
       <a class="p-2 text-dark" href="product.jsp">Products</a>
 
       <a class="p-2 text-dark" href="About.jsp">About Us</a>
+       <a class="p-2 text-dark" href="Team.jsp">Team</a>
 
 
 

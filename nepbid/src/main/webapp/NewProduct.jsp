@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
   <title>Seller Page</title>
@@ -53,32 +53,6 @@ font-size: 3.5rem;
 
 <body>
 
- <nav id="top-navbar" class="navbar navbar-expand-lg navbar-dark bg-dark" >
-    <a class="navbar-brand" href="#">NEP-BID</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-       
-        <li class="nav-item">
-          <a class="nav-link" href="sellerpanel.jsp">Home</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="product.jsp">ProductDetails</a>
-        </li>
-
-<li class="nav-item">
-          <a class="nav-link" href="ProductAllotment.jsp">Product Allotment</a>
-        </li>
-        
-        <li class="nav-item">
-            <a class="nav-link" href="home.jsp">Log Out </a>
-         </li>
-      </ul>
-    </div>
-  </nav>
   
 <div class="container">
   <h1 style="color: navy; font-size: 26px; padding: 5px 0px" align="center">Add New Product Page</h1>
