@@ -33,6 +33,15 @@
         -- 3 . drop the table Bidder
             Drop table Bidder;
 
+        -- 4. fetch the bidder password
+            select password from bidder where bidderid=?;
+
+        -- 5. update the bidder password
+            update bidder set password=? where bidderid=?;
+
+        -- 6. check bidder is present or not
+            select * from bidder where bidderid = ? and password =?;
+
 
 
 
@@ -58,6 +67,9 @@
         -- 6. update sellers password
             update sellers set spassword =? where Seller_id=?;
 
+        -- 7. check seller is present or not
+            select * from sellers where Seller_id = ? and spassword =?;
+
 
 -- Product table extraction
             Desc newproduct;
@@ -65,8 +77,9 @@
             -- 1. fetch all the data from the new product table
                 select * from newproduct;
 
-            -- 2. add new product 
-                INSERT INTO newproduct(productname,description,category,starting_bp,image,sellerid) VALUES (?, ?, ?, ?, ?, ?);
+            -- 2. find seller id and product name using product id
+                select productname, sellerid from newproduct where productid=?
+                
             
             -- 3. truncate new product table
                 truncate tablel newproduct;
