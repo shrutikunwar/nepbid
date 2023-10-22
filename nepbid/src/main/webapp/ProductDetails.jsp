@@ -1,5 +1,6 @@
 <%@page import="DataInfoImpl.Datainfo"%>
 <%@page import="java.util.List"%>
+<%@page errorPage="ErrorPage.jsp" %>
 <%@page import="com.biddingsystem.model.Products" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
         <!DOCTYPE html>

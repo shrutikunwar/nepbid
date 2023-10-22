@@ -46,7 +46,7 @@ public class LoginData {
 	
 	public boolean user(String id,String password){
 		boolean isexists = false;
-		String sql = "select * from bidder where Bidderid = ? and password =?";
+		String sql = "select * from bidder where bidderid = ? and password =?";
 		
 		try {
 			connection = DBConnect.getConnection();

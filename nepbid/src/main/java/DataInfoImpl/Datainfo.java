@@ -466,21 +466,57 @@ public class Datainfo {
 		return s;
 	}
 	
-	public List<Bid> getAllBidsStatus(){
+	
+	
+	// get the product name and seller id from product id
+	public String prname(int id){
+		String s = "";
+		
+		String query = "select productname from newproduct where productid=?";
+		
+		try {
+			connection = DBConnect.getConnection();
+			statement= connection.prepareStatement(query);
+			
+			statement.setInt(1, id);
+		     ResultSet resultSet= statement.executeQuery();
+			
+			if(resultSet.next()) {
+				s= resultSet.getString(1);
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		finally {
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+		
+		return s;
+	}
+	
+	public List<Bid> getAllBidsStatus(int ids ){
 		
 		 List<Bid> tBids = new ArrayList<>();
-		 String string = "select productid,bidderid,bidamount,status from bids";
+		 String string = "select productid,bidderid,bidamount,status from bids where bidderid = ? ";
 		 
 		 try {
 			connection =DBConnect.getConnection();
 			statement = connection.prepareStatement(string);
-			
+			statement.setInt(1, ids);
 			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
 				Bid bid = new Bid();
 				int id =resultSet.getInt("productid");
 				bid.setPid(id);
+				bid.setProductname(prname(id));
 				bid.setBid(resultSet.getInt("bidderid"));
 				bid.setBidamount(resultSet.getInt("bidamount"));
 				bid.setStatus(resultSet.getString("status"));
@@ -739,6 +775,129 @@ public class Datainfo {
 		
 		return name;
 	}
+	
+	
+	// fetch bidders password
+
+		public String fetchBidderspassword(int parseInt) {
+			String pass="";
+			
+			String query = "select password from bidder where bidderid=?";
+			try {
+				connection = DBConnect.getConnection();
+				statement = connection.prepareStatement(query);
+				
+				statement.setInt(1,parseInt);
+				ResultSet resultSet = statement.executeQuery();
+				
+				while(resultSet.next()) {
+					pass = resultSet.getString(1);
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			finally {
+	            try {
+	                connection.close();
+	                statement.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+			
+			return pass;
+		}
+
+
+		// update the bidders password
+		public void UpdateBidderpass(String newpassword, String id) {
+	      String p = "update bidder set password ='"+newpassword+"' where bidderid='"+Integer.parseInt(id)+"'";
+			 
+			 try {
+				 connection = DBConnect.getConnection();
+				 Statement stmt = connection.createStatement();
+				 
+				 int r = stmt.executeUpdate(p);
+				
+			} catch (SQLException e) {
+				// TODO: handle exception
+			}
+			 finally {
+		            try {
+		                connection.close();
+		                statement.close();
+		            } catch (SQLException e) {
+		                e.printStackTrace();
+		            }
+		        }
+		}
+		
+		
+		// fetch seller name
+		public String biddername(int id) {
+			String name="";
+			String query= "select name from bidder where bidderid=?";
+			 try {
+				 connection = DBConnect.getConnection();
+					statement = connection.prepareStatement(query);
+					
+					statement.setInt(1,id);
+					ResultSet resultSet = statement.executeQuery();
+					
+					while(resultSet.next()) {
+						name = resultSet.getString(1);
+					}
+				
+			} catch (SQLException e) {
+				// TODO: handle exception
+			}
+			 finally {
+		            try {
+		                connection.close();
+		                statement.close();
+		            } catch (SQLException e) {
+		                e.printStackTrace();
+		            }
+		        }
+			
+			
+			return name;
+		}
+
+
+
+		public List<Bid> searchBids(int id, String searchTerm) {
+		    List<Bid> searchResults = new ArrayList<>();
+		    Connection connection = null;
+		    PreparedStatement preparedStatement = null;
+		    ResultSet resultSet = null;
+
+		    try {
+		        connection = DBConnect.getConnection();
+		        String query = "SELECT * FROM bids WHERE bidderid = ? AND product_name LIKE ?";
+		        preparedStatement = connection.prepareStatement(query);
+		        preparedStatement.setInt(1, id);
+		        preparedStatement.setString(2, "%" + searchTerm + "%");
+		        resultSet = preparedStatement.executeQuery();
+
+		        while (resultSet.next()) {
+		            Bid bid = new Bid();
+		            bid.setProductname(resultSet.getString("product_name"));
+		            // Set other bid properties similarly
+		            searchResults.add(bid);
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace(); // Handle the exception properly in a real application
+		    } finally {
+		        // Close the resultSet, preparedStatement, and connection properly
+		    }
+
+		    return searchResults;
+		}
+
 	
 		
 	

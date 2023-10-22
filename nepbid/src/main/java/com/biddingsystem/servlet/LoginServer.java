@@ -74,7 +74,7 @@ public class LoginServer extends HttpServlet {
 			break;
 		
 		    case "bidder":
-			if(loginData.isSeller(id, password)) {
+			if(loginData.user(id, password)) {
 				session = request.getSession();
 				session.setAttribute("aid",id);
 				session.setAttribute("userRole", "bidder");

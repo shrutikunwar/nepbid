@@ -70,6 +70,7 @@ body {
     border: none;
 }
 
+
 .logout {
     display: flex;
     flex-direction: row;
@@ -77,7 +78,7 @@ body {
     text-align: center;
 }
 
-.clogout {
+.logout  button {
     background-color: transparent;
     border: none;
     font-size: large;

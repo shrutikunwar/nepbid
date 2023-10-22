@@ -48,7 +48,7 @@ public class UpdateAdmin extends HttpServlet {
 			String string1 =(datainfo.match(datainfo.fetchSellerpassword(Integer.parseInt(id)), password) == false) ? "Old password didnt matched":(datainfo.match(newpassword, confirmnewpassword)==true) ? "pass" :"Password misMatched"; 
 			if("pass".equals(string1)) {
 				 datainfo.UpdateSellerpass(newpassword, id);
-				 request.setAttribute("message","Password Updation success");
+				 request.setAttribute("message","Seller Password Updation success");
 			}
 			else {
 				request.setAttribute("message", string1);
@@ -59,10 +59,10 @@ public class UpdateAdmin extends HttpServlet {
 			break;
 			
 		case "bidder":
-			String string2 =(datainfo.match(datainfo.fetchpassword(id), password) == false) ? "Old password didnt matched":(datainfo.match(newpassword, confirmnewpassword)==true) ? "pass" :"Password misMatched"; 
+			String string2 =(datainfo.match(datainfo.fetchBidderspassword(Integer.parseInt(id)), password) == false) ? "Old password didnt matched":(datainfo.match(newpassword, confirmnewpassword)==true) ? "pass" :"Password misMatched"; 
 			if("pass".equals(string2)) {
-				 datainfo.Updatepass(newpassword, id);
-				 request.setAttribute("message","Password Updation success");
+				 datainfo.UpdateBidderpass(newpassword, id);
+				 request.setAttribute("message","Bidder Password Updation success");
 			}
 			else {
 				request.setAttribute("message", string2);
@@ -76,7 +76,7 @@ public class UpdateAdmin extends HttpServlet {
 		String string =(datainfo.match(datainfo.fetchpassword(id), password) == false) ? "Old password didnt matched":(datainfo.match(newpassword, confirmnewpassword)==true) ? "pass" :"Password misMatched"; 
 		if("pass".equals(string)) {
 			 datainfo.Updatepass(newpassword, id);
-			 request.setAttribute("message","Password Updation success");
+			 request.setAttribute("message","Admin Password Updation success");
 		}
 		else {
 			request.setAttribute("message", string);

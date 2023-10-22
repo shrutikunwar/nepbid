@@ -1,12 +1,40 @@
-<%@page import="DataInfoImpl.Datainfo,java.util.List"%>
-<%@page import="com.biddingsystem.model.Products"%>
+<%@page import="DataInfoImpl.Datainfo, com.biddingsystem.model.Products, java.util.List"%>
+<%@page import="java.io.IOException"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@page errorPage="ErrorPage.jsp" %>
+<%@ page session="true" %>
 
-
-
+<%
+    String userRole = (String) session.getAttribute("userRole");
+    if (userRole == null || !userRole.equals("bidder")) {
+        response.sendRedirect("ErrorPage.jsp"); // Redirect to error page if not logged in as a bidder
+    } else {
+        // User is logged in as a bidder, proceed with displaying the page content
+        int id = Integer.parseInt(request.getParameter("id"));
+        Datainfo datainfo = new Datainfo();
+        Products p = datainfo.getAllProductsDetails(id);
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+        window.onload = function() {
+            // Check session using AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'SessionCheckServlet', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = xhr.responseText;
+                    if (response === 'invalid') {
+                        // Redirect to error page if session is invalid
+                        window.location.href = 'ErrorPage.jsp';
+                    }
+                }
+            };
+            xhr.send();
+        };
+    </script>
     <title>Product Information</title>
     <style>
   
@@ -131,7 +159,7 @@ margin:7px;}
 
 
 </nav>
-   <%
+                    <%
 					int id = Integer.parseInt(request.getParameter("id"));
             		Datainfo datainfo = new Datainfo();
                     Products p = datainfo.getAllProductsDetails(id);
@@ -179,8 +207,7 @@ margin:7px;}
           <div class="modal-body" style="padding-top:10px;">
       <form id="bid-form" action="bidp" method="post">
       <div class="form-group">
-      <label for="bid-amount">Bidder id:</label>
-          <input type="number" id="bidid" name="bidderid" required>
+          <input type="hidden" id="bidid" name="bidderid" value=<%=(String) session.getAttribute("aid") %>>
           <label for="bid-amount">Bid Amount:</label>
           <input type="number" id="bidamount" name="bidamount" required>
           <input type="hidden" id="pid" name="pid" value="<%=p.getProductid()%>">

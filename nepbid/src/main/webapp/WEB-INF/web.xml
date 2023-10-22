@@ -6,6 +6,42 @@
 	</welcome-file-list>
 	
 	
+	<!-- Define an error page--> 
+  <error-page>
+    <error-code>500</error-code>
+    <location>/errorHandler</location>
+</error-page>
+
+  <error-page>
+    <error-code>405</error-code>
+    <location>/errorHandler</location>
+</error-page>
+
+<error-page>
+    <error-code>404</error-code>
+    <location>/errorHandler</location>
+</error-page>
+
+
+
+
+<!-- Set the session timeout in minutes (e.g., 30 minutes) -->
+<session-config>
+    <session-timeout>30</session-timeout>
+</session-config>
+
+<!-- Define an error page for session timeout -->
+<error-page>
+    <error-code>408</error-code>
+    <location>/sessionTimeoutError.jsp</location>
+</error-page>
+
+<!-- Define an error page for other errors -->
+<error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/errorHandler.jsp</location>
+</error-page>
+	
  <servlet>
         <servlet-name>TransactionServlet</servlet-name>
         <servlet-class>com.biddingsystem.servlet.TransactionServlet</servlet-class>
@@ -16,14 +52,6 @@
         <url-pattern>/transaction</url-pattern>
     </servlet-mapping>
     
-    <servlet>
-    <servlet-name>Adminservlet</servlet-name>
-    <servlet-class>com.biddingsystem.servlet.Adminservlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Adminservlet</servlet-name>
-    <url-pattern>/Admin</url-pattern>
-  </servlet-mapping>
   
   
   <servlet>
@@ -120,6 +148,20 @@
                 <servlet-name>LogoutPage</servlet-name>
                 <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+    
+     <servlet>
+          <servlet-name>SearchServlet</servlet-name>
+          <servlet-class>com.biddingsystem.servlet.SearchServlet</servlet-class>
+  </servlet>
+    
+    <servlet-mapping>
+                <servlet-name>SearchServlet</servlet-name>
+                <url-pattern>/Search</url-pattern>
+    </servlet-mapping>
+ 
+ 
+
+
  
  
 </web-app>

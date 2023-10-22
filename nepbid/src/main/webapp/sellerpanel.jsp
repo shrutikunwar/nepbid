@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
 <%@page import="DataInfoImpl.Datainfo"%>
-
+<%@page errorPage="ErrorPage.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,8 +69,16 @@ pageEncoding="ISO-8859-1"%>
                 <li>
                     <a href="UpdateAdmin.jsp" target="content"><img src="./assets/images/Product allotment.png "> Change Password </a>
                 </li>
-                
-
+                <hr>
+                <br>
+                 <li>
+                    <div class="logout">
+                        <form action="logout" method="post">
+                            <img src="./assets/images/logoutB.png" alt="logoff">
+                            <button type="submit" class="clogout">Logout</button>
+                        </form>
+                    </div>
+                </li>
 
         
             </ul>

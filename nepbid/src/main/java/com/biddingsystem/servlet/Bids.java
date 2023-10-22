@@ -85,6 +85,8 @@ public class Bids extends HttpServlet {
 			
 		} catch (SQLException e) {
 			// TODO: handle exception
+		}finally {
+			request.getRequestDispatcher("view.jsp").forward(request, response);
 		}
 	 
  }

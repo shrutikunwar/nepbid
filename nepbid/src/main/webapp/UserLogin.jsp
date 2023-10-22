@@ -161,7 +161,6 @@
 				<p class="my-0 mr-md-auto font-weight-normal" style="font-size:180%;"><b>NepBid</b></p>
 				<nav class="my-2 my-md-0 mr-md-3">
 					<a class="p-2 text-dark" href="home.jsp">Home</a>
-					<a class="p-2 text-dark" href="product.jsp">Products</a>
 					<a class="p-2 text-dark" href="About.jsp">About Us</a>
 
 				</nav>
