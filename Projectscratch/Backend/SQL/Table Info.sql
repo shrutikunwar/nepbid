@@ -99,3 +99,7 @@
                 -- 3. drop table bids
                     drop table bids;
 
+
+
+-- combined Queries
+SELECT  bids.productid, bids.bidamount, bids.status, newproduct.productname FROM bids INNER JOIN newproduct ON bids.productid = newproduct.productid WHERE bids.bidderid = 1 AND newproduct.productname LIKE '%chandeliers';
