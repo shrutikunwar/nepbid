@@ -39,65 +39,76 @@
                             </script>
                             <title>Product Information</title>
                             <style>
+                                @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+                                * {
+                                    margin: 0;
+                                    padding: 0;
+                                    box-sizing: border-box;
+                                    font-family: 'Poppins', sans-serif;
                                 }
-                            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-                            * {
-                                margin: 0;
-                                padding: 0;
-                                box-sizing: border-box;
-                                font-family: 'Poppins', sans-serif;
-                            }
-                            html,
-                            body {
-                                display: grid;
-                                height: 100vh;
-                                width: 100%;
-                                place-items: left;
-                                background: #e9ecef;
-                            }
-                            .navbar {
-                                background-color: #f0e0e0;
-                                overflow: hidden;
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: center;
-                                padding: 10px 20px;
-                            }
-                            .navbar a {
-                                color: rgb(0, 0, 0);
-                                text-decoration: none;
-                                padding: 10px 20px;
-                            }
-                            .navbar a:hover {
-                                background-color: #ddd;
-                                color: black;
-                            }
-                            table {
-                                border-collapse: collapse;
-                                border: 2px solid black;
-                                margin: auto;
-                                /* Center the table on the page */
-                            }
-                            th,
-                            td {
-                                border: 2px solid black;
-                                padding: 15px;
-                            }
-                            .field-column {
-                                width: 150px;
-                            }
-                            .value-column {
-                                width: 300px;
-                            }
-                            .product-details {
-                                text-align: center;
-                                background-color: lightgray;
-                            }
-                            .modal-body {
-                                text-align-last: center;
-                                position: relative;
-                                min-height: 100vh;
-                                margin: 60;
+                                
+                                html,
+                                body {
+                                    display: grid;
+                                    height: 100vh;
+                                    width: 100%;
+                                    place-items: left;
+                                    background: #e9ecef;
+                                }
+                                
+                                .navbar {
+                                    background-color: #f0e0e0;
+                                    overflow: hidden;
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    padding: 10px 20px;
+                                }
+                                
+                                .navbar a {
+                                    color: rgb(0, 0, 0);
+                                    text-decoration: none;
+                                    padding: 10px 20px;
+                                }
+                                
+                                .navbar a:hover {
+                                    background-color: #ddd;
+                                    color: black;
+                                }
+                                
+                                table {
+                                    border-collapse: collapse;
+                                    border: 2px solid black;
+                                    margin: auto;
+                                    /* Center the table on the page */
+                                }
+                                
+                                th,
+                                td {
+                                    border: 2px solid black;
+                                    padding: 15px;
+                                }
+                                
+                                .field-column {
+                                    width: 150px;
+                                }
+                                
+                                .value-column {
+                                    width: 300px;
+                                }
+                                
+                                .product-details {
+                                    text-align: center;
+                                    background-color: lightgray;
+                                }
+                                
+                                .modal-body {
+                                    text-align-last: center;
+                                    position: relative;
+                                    min-height: 100vh;
+                                    margin: 60;
+                                }
+                                
                                 hr {
                                     margin: 7px;
                                 }

@@ -6,10 +6,10 @@ use online_bidding_system;
 
     
     -- Seller Table
-        create table sellers(Seller_id int auto_increment , sname varchar(30) not null, scontact varchar(30) not null, saddress varchar(30), semail varchar(30) not null, spassword varchar(30) not null, primary key(Seller_id));
+        create table sellers(Seller_id int auto_increment , sname varchar(30) not null, scontact varchar(30) not null, saddress varchar(30), semail varchar(30) not null, spassword varchar(80) not null, primary key(Seller_id));
 
     -- Bidder Table
-        create table Bidder(Bidderid int auto_increment, name varchar(30) , email varchar(30), contact bigint , password varchar(30) , primary key(Bidderid) );
+        create table Bidder(Bidderid int auto_increment, name varchar(30) , email varchar(30), contact bigint , password varchar(80) , primary key(Bidderid) );
 
     -- newproduct Table
         create table newproduct(productid int auto_increment, productname varchar(30), description varchar(30), starting_bp bigint, image varchar(30), category varchar(20), sellerid int, primary key(productid), foreign key(sellerid) references sellers(Seller_id) on delete cascade);

@@ -25,7 +25,7 @@
 -- Bidder Table extraction
 
         -- 1. fetch all data from Bidder
-            select * from Bidder;
+            select * From bidder;
     
         -- 2. truncate Bidder table
             truncate table Bidder;
@@ -82,10 +82,17 @@
                 
             
             -- 3. truncate new product table
-                truncate tablel newproduct;
+                truncate table newproduct;
 
             -- 4. drop table newproduct;
                     drop table newproduct;
+
+            -- 5. extract all products of a seller
+                    select count(*) from newproducts where sellerid=?;
+
+            -- 6. Search product name
+                select productname, description, starting_bp,image from newproduct where productname LIKE 'c';
+            
 
 -- Bids Table extraction 
                 desc bids;
@@ -99,7 +106,22 @@
                 -- 3. drop table bids
                     drop table bids;
 
+                -- 4. fetch last product allotted
+                    SELECT productid FROM bids WHERE status = 'alloted' and  bidderid = 1  ORDER BY id DESC LIMIT 1;
 
+                -- 5. fetch last 3 products bids
+                        SELECT productid FROM bids WHERE status="pending" and bidderid = 1  ORDER BY id DESC LIMIT 3;
+
+                
 
 -- combined Queries
 SELECT  bids.productid, bids.bidamount, bids.status, newproduct.productname FROM bids INNER JOIN newproduct ON bids.productid = newproduct.productid WHERE bids.bidderid = 1 AND newproduct.productname LIKE '%chandeliers';
+
+-- extract number of alloted product by seller
+        select * from bids inner JOIN newproduct on bids.productid = newproduct.productid where newproduct.sellerid= 2 and bids.status ="alloted";
+
+-- extract no of pending products by seller 
+        select * from bids inner JOIN newproduct on bids.productid = newproduct.productid where newproduct.sellerid= 2 and bids.status = "pending";
+
+-- extract highest bid for seller
+        select bids.bidamount from bids inner JOIN newproduct on bids.productid = newproduct.productid where newproduct.sellerid = 2 ORDER BY bids.bidamount DESC LIMIT 1;
