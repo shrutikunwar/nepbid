@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.biddingsystem.model.Bidder;
 import com.biddingsystem.utill.DBConnect;
 
+import DataInfoImpl.PasswordHashing;
+
 @WebServlet("/RegBidder")
 public class RegBidder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,23 +36,17 @@ public class RegBidder extends HttpServlet {
 	        RequestDispatcher dispatcher = null;
 	        Connection conn = null;
 
-	        // Create a Bidder object and set its properties
-	        Bidder bidder = new Bidder();
-	        bidder.setName(name);
-	        bidder.setEmail(email);
-	        bidder.setContact(contact);
-	        bidder.setPassword(password);
-
 	        try {
 	        	  // Insert the bidder into the database
 	            conn = DBConnect.getConnection();
-	            String sql = "INSERT INTO Bidder (name, email, password, contact) VALUES (?, ?, ?, ?)";
+	            String sql = "INSERT INTO Bidder (name, email, contact, password) VALUES (?, ?, ?, ?)";
 	            PreparedStatement statement = conn.prepareStatement(sql);
 
 	            statement.setString(1, name);
 	            statement.setString(2, email);
-	            statement.setString(3, password);
-	            statement.setInt(4, contact);
+	            statement.setInt(3, contact);
+	            statement.setString(4,PasswordHashing.hashpassword(password));
+	            
 
 	            int rowsInserted = statement.executeUpdate();
 	            
@@ -67,7 +63,7 @@ public class RegBidder extends HttpServlet {
 	            e.printStackTrace();
 	        }
 	        
-	        dispatcher = request.getRequestDispatcher("registrationU.jsp");
+	        dispatcher = request.getRequestDispatcher("BidderRegistration.jsp");
 	        dispatcher.forward(request, response);
 	    }
 	}

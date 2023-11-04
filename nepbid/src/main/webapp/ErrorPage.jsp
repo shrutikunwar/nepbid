@@ -36,7 +36,7 @@
             <div class="error-message">
                 <h1>Error - Something went Wrong</h1>
                 <p>Sorry, the page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
-                <a href="homes.jsp" target="_parent">Go back to the Login Page</a>
+                <a href="home.jsp" target="_parent">Go back to the Login Page</a>
             </div>
         </body>
 

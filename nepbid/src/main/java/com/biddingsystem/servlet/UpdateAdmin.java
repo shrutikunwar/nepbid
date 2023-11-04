@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DataInfoImpl.Datainfo;
+import DataInfoImpl.PasswordHashing;
 
 /**
  * Servlet implementation class UpdateAdmin
@@ -45,9 +46,9 @@ public class UpdateAdmin extends HttpServlet {
 		switch(action) {
 		
 		case "seller":
-			String string1 =(datainfo.match(datainfo.fetchSellerpassword(Integer.parseInt(id)), password) == false) ? "Old password didnt matched":(datainfo.match(newpassword, confirmnewpassword)==true) ? "pass" :"Password misMatched"; 
+			String string1 =(datainfo.match(datainfo.fetchSellerpassword(Integer.parseInt(id)),PasswordHashing.hashpassword(password)) == false) ? "Old password didnt matched":(datainfo.match(newpassword, confirmnewpassword)==true) ? "pass" :"Password misMatched"; 
 			if("pass".equals(string1)) {
-				 datainfo.UpdateSellerpass(newpassword, id);
+				 datainfo.UpdateSellerpass(PasswordHashing.hashpassword(newpassword), id);
 				 request.setAttribute("message","Seller Password Updation success");
 			}
 			else {
@@ -59,9 +60,9 @@ public class UpdateAdmin extends HttpServlet {
 			break;
 			
 		case "bidder":
-			String string2 =(datainfo.match(datainfo.fetchBidderspassword(Integer.parseInt(id)), password) == false) ? "Old password didnt matched":(datainfo.match(newpassword, confirmnewpassword)==true) ? "pass" :"Password misMatched"; 
+			String string2 =(datainfo.match(datainfo.fetchBidderspassword(Integer.parseInt(id)),PasswordHashing.hashpassword(password)) == false) ? "Old password didnt matched":(datainfo.match(newpassword, confirmnewpassword)==true) ? "pass" :"Password misMatched"; 
 			if("pass".equals(string2)) {
-				 datainfo.UpdateBidderpass(newpassword, id);
+				 datainfo.UpdateBidderpass(PasswordHashing.hashpassword(newpassword), id);
 				 request.setAttribute("message","Bidder Password Updation success");
 			}
 			else {
@@ -73,9 +74,9 @@ public class UpdateAdmin extends HttpServlet {
 			break;
 			
 		default:
-		String string =(datainfo.match(datainfo.fetchpassword(id), password) == false) ? "Old password didnt matched":(datainfo.match(newpassword, confirmnewpassword)==true) ? "pass" :"Password misMatched"; 
+		String string =(datainfo.match(datainfo.fetchpassword(id),PasswordHashing.hashpassword(password)) == false) ? "Old password didnt matched":(datainfo.match(newpassword, confirmnewpassword)==true) ? "pass" :"Password misMatched"; 
 		if("pass".equals(string)) {
-			 datainfo.Updatepass(newpassword, id);
+			 datainfo.Updatepass(PasswordHashing.hashpassword(newpassword), id);
 			 request.setAttribute("message","Admin Password Updation success");
 		}
 		else {

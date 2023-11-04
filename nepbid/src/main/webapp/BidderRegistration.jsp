@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -175,12 +177,8 @@ margin: 20px 0 50px 0;
 <p class="my-0 mr-md-auto font-weight-normal" style="font-size:180%;" ><b>NepBid</b></p>
 <nav class="my-2 my-md-0 mr-md-3">
 	<a class="p-2 text-dark" href="home.jsp">Home</a>
-	<a class="p-2 text-dark" href="product.jsp">Products</a>
 <a class="p-2 text-dark" href="About.jsp">About Us</a>
-<a class="p-2 text-dark" href="Help.jsp">Help</a>
-<a class="p-2 text-dark" href="Feedback.jsp">Feedback</a>
 </nav>
-<a class="btn btn-outline-primary mr-3" href="Adminlogin.jsp">Admin Login</a>
 <a class="btn btn-outline-primary" href="SellerLogin.jsp">Seller Login</a>
 </div>
 
@@ -221,41 +219,5 @@ margin: 20px 0 50px 0;
 
 
 </div>
-<footer class="pt-4 my-md-5 pt-md-5 border-top">
-<div class="row">
-<div class="col-12 col-md mr-5" >
-
-</div>
-<div class="col-6 col-md">
-<h5>Features</h5>
-<ul class="list-unstyled text-small">
-<li><a class="text-muted" href="#">Cool stuff</a></li>
-<li><a class="text-muted" href="#">Random feature</a></li>
-<li><a class="text-muted" href="#">Team feature</a></li>
-<li><a class="text-muted" href="#">Stuff for developers</a></li>
-<li><a class="text-muted" href="#">Another one</a></li>
-<li><a class="text-muted" href="#">Last time</a></li>
-</ul>
-</div>
-<div class="col-6 col-md">
-<h5>Resources</h5>
-<ul class="list-unstyled text-small">
-<li><a class="text-muted" href="#">Resource</a></li>
-<li><a class="text-muted" href="#">Resource name</a></li>
-<li><a class="text-muted" href="#">Another resource</a></li>
-<li><a class="text-muted" href="#">Final resource</a></li>
-</ul>
-</div>
-<div class="col-6 col-md">
-<h5>About</h5>
-<ul class="list-unstyled text-small">
-<li><a class="text-muted" href="#">Team</a></li>
-<li><a class="text-muted" href="#">Locations</a></li>
-<li><a class="text-muted" href="#">Privacy</a></li>
-<li><a class="text-muted" href="#">Terms</a></li>
-</ul>
-</div>
-</div>
-</footer>
 </body>
 </html>

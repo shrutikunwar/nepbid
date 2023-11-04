@@ -4,7 +4,6 @@
 <html>
 
 <head>
-  <title>Bootstrap Navigation Bar</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 
@@ -331,12 +330,6 @@
        <a class="p-2 text-dark" href="Team.jsp">Team</a>
       <a class="p-2 text-dark" href="About.jsp">About Us</a>
 
-
-
-
-
-      <a class="btn btn-outline-primary mr-3" href="Adminlogin.jsp">Admin Login</a>
-
       <a class="btn btn-outline-primary" href="Userlogin.jsp">User Login</a>
 
   </div>
@@ -359,32 +352,32 @@
       <img src="assets/images/Kylie jenner's Rare Nike Sneakers.png" alt="Image 1">
       <div class="description">Kylie jenner's Rare Nike Sneakers</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+       
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/gucci heels categories shoes 1.png" alt="Image 2">
       <div class="description">/Gucci Heels</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+       
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/barker shoes categoris shoes 1.png" alt="Image 3">
       <div class="description">Barker shoes</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+       
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/floral platform wedge heel sandals categories shoes 1.png" alt="Image 4">
       <div class="description">Floral platform wedge heel sandals</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+       
       </div>
     </div>
   </div>
@@ -394,32 +387,32 @@
       <img src="assets/images/categories shoes 1.png" alt="Image 1">
       <div class="description">Unisex Sneerker</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+       
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/categories shoes 2.png" alt="Image 2">
       <div class="description">Confy sneekers</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+       
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/Masaba Gupta Collaborates with Puma Capsule Sneaker.png" alt="Image 3">
       <div class="description">Masaba Gupta Collaborates with Puma Capsule Sneaker</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+       
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/Adidas Stan Smith Golf Shoes Limited Edition.png" alt="Image 4">
       <div class="description">Image 4 Description</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+       
       </div>
     </div>
   </div>

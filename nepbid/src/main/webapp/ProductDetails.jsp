@@ -55,12 +55,21 @@
         <%
         
         Datainfo datainfo = new Datainfo();
-        List<Products> product = datainfo.getAllProducts();
-        
+        List<Products> product = null;
+        String role = (String) session.getAttribute("userRole");
+        		
+        if(role.equals("seller"))
+        {
+        	String s = (String) session.getAttribute("aid");
+        	product = datainfo.getAllSellerProducts(Long.parseLong(s));
+        }
+        else{
+        	product = datainfo.getAllProducts();
+        }
         %>
         
         <%
-String name = (String) session.getAttribute("AdminName");
+         String name = (String) session.getAttribute("AdminName");
 
 %>
        

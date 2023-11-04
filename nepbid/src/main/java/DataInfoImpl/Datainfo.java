@@ -21,6 +21,8 @@ public class Datainfo {
 	public static Connection connection= null;
 	public static PreparedStatement  statement = null;
 	
+	
+	// get all sellers details
 	 public List<Transaction> getAllTransactions() {
 	        List<Transaction> transactions = new ArrayList<>();
 
@@ -58,6 +60,7 @@ public class Datainfo {
 	 
 	 
 	 
+	 // get all bidders details
 	 public List<Bidder> getAllBidders() {
 	        List<Bidder> bidders = new ArrayList<>();
 
@@ -91,9 +94,7 @@ public class Datainfo {
 	 
 	 
 	 // extract the image from the database for products.
-	 
-
-	 
+	
 	 public List<Products> getAllProducts(){
 		 List<Products> products = new ArrayList<>();
 		 Connection connection = null;
@@ -134,11 +135,55 @@ public class Datainfo {
 	 }
 	 
 	 
-	 
+	// extract the Seller products.
+		
+		 public List<Products> getAllSellerProducts(long sellerid){
+			 List<Products> products = new ArrayList<>();
+			 Connection connection = null;
+			 String sql = "select productid,productname,category,starting_bp,description,image from newproduct where sellerid = ?";
+			 try {
+				 connection = DBConnect.getConnection();
+				 
+				statement = connection.prepareStatement(sql);
+				statement.setLong(1, sellerid);
+				 ResultSet resultSet = statement.executeQuery();
+				 
+				 while(resultSet.next()) {
+					 Products product = new Products();
+					 product.setProductid(resultSet.getInt("productid"));
+					 product.setProductname(resultSet.getString("productname"));			
+					 product.setProductcategory(resultSet.getString("category"));
+					 product.setStarting_bp(resultSet.getString("starting_bp"));
+					 product.setProductdescription(resultSet.getString("description"));
+					 product.setImage("assets"+File.separator+"productimages"+File.separator+resultSet.getString("image"));
+					 products.add(product);
+					 
+				 }
+			 }
+			 catch ( Exception e ) {
+				// TODO: handle exception
+			}
+			 
+			 finally {
+		            try {
+		                connection.close();
+		                statement.close();
+		            } catch (SQLException e) {
+		                e.printStackTrace();
+		            }
+		        }
+			 
+			 return products;
+			 
+		 }
+		 
+		 
 	 // update password
 	 public boolean match(String pass , String pass2) {
 		return pass.equals(pass2); 
 	 }
+	 
+	 
 	 
 	 // fetch password for admin
 	 public String fetchpassword(String id) {
@@ -157,11 +202,12 @@ public class Datainfo {
 			}
 			
 		} catch (SQLException e) {
-			// TODO: handle exception
 		}
 		 
 		 return pass;
 	 }
+	 
+	 
 	 
 	 // update admin password
 	 public void Updatepass(String s,String id) {
@@ -173,7 +219,6 @@ public class Datainfo {
 			 int r = stmt.executeUpdate(p);
 			
 		} catch (SQLException e) {
-			// TODO: handle exception
 		}
 		 finally {
 	            try {
@@ -187,7 +232,10 @@ public class Datainfo {
 	 }
 	 
 	 
-	// fetch data from tables
+	 
+	 
+	 
+	// fetch all data from product tables
 	 public Products getAllProductsDetails(int id){
 		 Products product = new Products();
 		 String sql = "select * from newproduct where productid='"+id+"'";
@@ -226,6 +274,10 @@ public class Datainfo {
 		 return product;
 	 }
 	 
+	 
+	 
+	 
+	 
 	 // fetch the data from the bids tables
 	 public List<Bid> getAllBids(){
 		 List<Bid> tBids = new ArrayList<>();
@@ -259,12 +311,12 @@ public class Datainfo {
 	            } catch (SQLException e) {
 	                e.printStackTrace();
 	            }
-	        }
-		 
-		 
-		 
+	        } 
 		 return tBids;
 	 }
+	 
+	 
+	 
 	 
 	 //fetch seller id	 
 	public int seller(int pid) {
@@ -299,6 +351,8 @@ public class Datainfo {
 		return sid;
 		
 	}
+	
+	
 	
 	
 	//fetch amount from product id
@@ -336,6 +390,8 @@ public class Datainfo {
 	}
 	
 	
+	
+	
 	//find product
 	public boolean findid(int id) {
 		boolean istrue = false;
@@ -365,6 +421,7 @@ public class Datainfo {
 		
 		return istrue;
 	}
+	
 	
 	
 	
@@ -402,6 +459,8 @@ public class Datainfo {
 	}
 	
 	
+	
+	
 	//reverse
 	public boolean noallotment(int id) {
 		boolean istrue = false;
@@ -434,6 +493,8 @@ public class Datainfo {
 		
 		return istrue;
 	}
+	
+	
 	
 	
 	//extract status
@@ -501,6 +562,10 @@ public class Datainfo {
 		return s;
 	}
 	
+	
+	
+	
+	// get all bids status for the bidder id's
 	public List<Bid> getAllBidsStatus(int ids ){
 		
 		 List<Bid> tBids = new ArrayList<>();
@@ -543,7 +608,7 @@ public class Datainfo {
 	
 	
 	
-	
+	// fetch the top products 
 	public Products topProducts(){ 
 		Products product = new Products();
 		String string =" select * from newproduct where productid = (select productid from bids b1 where 3-1 = (select count(Distinct(b2.bidamount)) from bids b2 where b2.bidamount > b1.bidamount))";
@@ -586,7 +651,6 @@ public class Datainfo {
 	
 	
 	// fetch the number of product bidder and sellers
-	
 	public int fetchproduct() {
 		int count = 0;
 		
@@ -619,6 +683,9 @@ public class Datainfo {
 		return count;
 	}
 	
+	
+	
+	// fetch total numbers of sellers
 	public int fetchseller() {
 		int count = 0;
 		
@@ -652,6 +719,8 @@ public class Datainfo {
 	}
 		
 	
+	
+	// fetch total number of bidders
 	public int fetchBidder() {
 		int count = 0;
 		
@@ -687,7 +756,6 @@ public class Datainfo {
 
 	
 	// fetch sellers password
-
 	public String fetchSellerpassword(int parseInt) {
 		String pass="";
 		
@@ -721,6 +789,7 @@ public class Datainfo {
 	}
 
 
+	
 	// update the sellers password
 	public void UpdateSellerpass(String newpassword, String id) {
       String p = "update sellers set spassword ='"+newpassword+"' where Seller_id='"+Integer.parseInt(id)+"'";
@@ -743,6 +812,7 @@ public class Datainfo {
 	            }
 	        }
 	}
+	
 	
 	
 	// fetch seller name
@@ -778,7 +848,6 @@ public class Datainfo {
 	
 	
 	// fetch bidders password
-
 		public String fetchBidderspassword(int parseInt) {
 			String pass="";
 			
@@ -811,6 +880,7 @@ public class Datainfo {
 			return pass;
 		}
 
+		
 
 		// update the bidders password
 		public void UpdateBidderpass(String newpassword, String id) {
@@ -836,6 +906,7 @@ public class Datainfo {
 		}
 		
 		
+		
 		// fetch seller name
 		public String biddername(int id) {
 			String name="";
@@ -852,7 +923,6 @@ public class Datainfo {
 					}
 				
 			} catch (SQLException e) {
-				// TODO: handle exception
 			}
 			 finally {
 		            try {
@@ -869,37 +939,239 @@ public class Datainfo {
 
 
 
-		public List<Bid> searchBids(int id, String searchTerm) {
-		    List<Bid> searchResults = new ArrayList<>();
-		    Connection connection = null;
-		    PreparedStatement preparedStatement = null;
-		    ResultSet resultSet = null;
+		
+		// search the products bided by the bidder
+		public static List<Bid> searchBids(int id, String searchTerm) {
+		    List<Bid> searchResults = new ArrayList<Bid>();
 
 		    try {
 		        connection = DBConnect.getConnection();
-		        String query = "SELECT * FROM bids WHERE bidderid = ? AND product_name LIKE ?";
-		        preparedStatement = connection.prepareStatement(query);
-		        preparedStatement.setInt(1, id);
-		        preparedStatement.setString(2, "%" + searchTerm + "%");
-		        resultSet = preparedStatement.executeQuery();
+		        String query = "SELECT bids.productid, bids.bidamount, newproduct.sellerid, bids.status, newproduct.productname FROM bids INNER JOIN newproduct ON bids.productid = newproduct.productid WHERE bids.bidderid = ? AND newproduct.productname LIKE ? ";
+		     
+		        statement = connection.prepareStatement(query);
+		        statement.setInt(1, id);
+		        statement.setString(2, searchTerm+ "%");
+		        ResultSet resultSet = statement.executeQuery();
 
 		        while (resultSet.next()) {
 		            Bid bid = new Bid();
-		            bid.setProductname(resultSet.getString("product_name"));
-		            // Set other bid properties similarly
+		            bid.setProductname(resultSet.getString("productname"));
+		            bid.setPid(resultSet.getInt("productid"));
+		            bid.setSid(resultSet.getInt("sellerid"));
+		            bid.setBidamount(resultSet.getInt("bidamount"));
+		            bid.setStatus(resultSet.getString("status"));
 		            searchResults.add(bid);
 		        }
 		    } catch (SQLException e) {
-		        e.printStackTrace(); // Handle the exception properly in a real application
+		        e.printStackTrace(); 
 		    } finally {
-		        // Close the resultSet, preparedStatement, and connection properly
+		    	try {
+		    		connection.close();
+		    		statement.close();
+		    	}
+		    	catch(SQLException e) {
+		    		
+		    	}
+		    }
+
+		    return searchResults;
+		}
+		
+		
+		
+		
+		// search products for the customers.
+		public static List<Products> searchProductshome(String searchTerm) {
+		    List<Products> searchResults = new ArrayList<Products>();
+
+		    try {
+		        connection = DBConnect.getConnection();
+		        String query = "select productname, description, starting_bp,image from newproduct where productname LIKE ? ";
+		     
+		        statement = connection.prepareStatement(query);
+		        statement.setString(1, searchTerm+ "%");
+		        ResultSet resultSet = statement.executeQuery();
+
+		        while (resultSet.next()) {
+		           Products p = new Products();
+		           p.setProductname(resultSet.getString("productname"));
+		           p.setProductdescription(resultSet.getString("description"));
+		           p.setStarting_bp(resultSet.getString("starting_bp"));
+		           p.setImage(resultSet.getString("image"));
+		            searchResults.add(p);
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace(); 
+		    } finally {
+		    	try {
+		    		connection.close();
+		    		statement.close();
+		    	}
+		    	catch(SQLException e) {
+		    		
+		    	}
 		    }
 
 		    return searchResults;
 		}
 
-	
+
 		
 	
+		
+		
+		// find the total number of products for the sellers
+		public static int TotalSellerProduct(int sellerid) {
+			int count=0;
+			
+			String query="select count(*) from newproduct where sellerid=?";
+			
+			try {
+				connection = DBConnect.getConnection();
+				statement = connection.prepareStatement(query);
+				
+				statement.setLong(1, sellerid);
+				
+				ResultSet r = statement.executeQuery();
+				
+				while(r.next()) {
+					count= r.getInt(1);
+				}
+			}
+			catch(SQLException e) {
+				
+			}
+			finally {
+				try {
+					if(connection !=null) {
+						connection.close();
+					}
+					if(statement != null) {
+						statement.close();
+					}
+				}
+				catch(SQLException w) {
+					
+				}
+			}
+			
+			
+			return count;
+		}
+		
+		
+		// find the total number of products alloted by the seller
+		public static int TotalProductSellerAlloted(int sellerid) {
+			int count=0;
+			String query="select count(*) from bids inner JOIN newproduct on bids.productid = newproduct.productid where newproduct.sellerid= ? and bids.status = 'alloted'";
+			
+			try {
+				connection = DBConnect.getConnection();
+				statement = connection.prepareStatement(query);
+				
+				statement.setLong(1, sellerid);
+				
+				ResultSet r = statement.executeQuery();
+				
+				while(r.next()) {
+					count= r.getInt(1);
+				}
+			}
+			catch(SQLException e) {
+				
+			}
+			finally {
+				try {
+					if(connection !=null) {
+						connection.close();
+					}
+					if(statement != null) {
+						statement.close();
+					}
+				}
+				catch(SQLException w) {
+					
+				}
+			}
+			
+			return count;
+		}
+		
+		//find the total number of products in pending state for seller
+		public static int TotalSellerProductsPending(int sellerid) {
+			int count= 0;
+			String query="select count(*) from bids inner JOIN newproduct on bids.productid = newproduct.productid where newproduct.sellerid= ? and bids.status = 'pending'";
+			
+			try {
+				connection = DBConnect.getConnection();
+				statement = connection.prepareStatement(query);
+				
+				statement.setLong(1, sellerid);
+				
+				ResultSet r = statement.executeQuery();
+				
+				while(r.next()) {
+					count= r.getInt(1);
+				}
+			}
+			catch(SQLException e) {
+				
+			}
+			finally {
+				try {
+					if(connection !=null) {
+						connection.close();
+					}
+					if(statement != null) {
+						statement.close();
+					}
+				}
+				catch(SQLException w) {
+					
+				}
+			}
+			
+			return count;
+		}
+		
+		
+		// find the highest bid done for the seller product
+		public static long HighestProductBId(int sellerid) {
+			long bid=0;
+            String query="select bids.bidamount from bids inner JOIN newproduct on bids.productid = newproduct.productid where newproduct.sellerid = ? ORDER BY bids.bidamount DESC LIMIT 1";
+			
+			try {
+				connection = DBConnect.getConnection();
+				statement = connection.prepareStatement(query);
+				
+				statement.setLong(1, sellerid);
+				
+				ResultSet r = statement.executeQuery();
+				
+				while(r.next()) {
+					bid= r.getLong(1);
+				}
+			}
+			catch(SQLException e) {
+				
+			}
+			finally {
+				try {
+					if(connection !=null) {
+						connection.close();
+					}
+					if(statement != null) {
+						statement.close();
+					}
+				}
+				catch(SQLException w) {
+					
+				}
+			}
+			
+			return bid;
+		}
 	 
+		
+		
 }

@@ -4,6 +4,8 @@
 <%@page errorPage="ErrorPage.jsp" %>
 <%@ page session="true" %>
 
+
+
 <%
     String userRole = (String) session.getAttribute("userRole");
     if (userRole == null || !userRole.equals("bidder")) {
@@ -15,9 +17,13 @@
         Products p = datainfo.getAllProductsDetails(id);
     }
 %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
+
+
 <script>
         window.onload = function() {
             // Check session using AJAX
@@ -35,62 +41,24 @@
             xhr.send();
         };
     </script>
+    
+    
     <title>Product Information</title>
+    
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/styles/see.css">
+    <link rel="stylesheet" href="assets/styles/base.css">
+    
     <style>
-  
-        }
-   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-
-    * {
-
-      margin: 0;
-
-      padding: 0;
-
-      box-sizing: border-box;
-
-      font-family: 'Poppins', sans-serif;
-
-    }
-
-
 
     html,
-    body {
+            body {
 
-      display: grid;
-
-      height: 100vh;
-
-      width: 100%;
-
-      place-items: left;
-
-      background: #e9ecef;
-
-    }
-
-
-       .navbar {
-            background-color: #f0e0e0;
-            overflow: hidden;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            
-        }
-
-        .navbar a {
-            color: rgb(0, 0, 0);
-            text-decoration: none;
-            padding: 10px 20px;
-        }
-
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
+                height: 100vh;
+                width: 100%;
+                place-items: left;
+                background: view.jspe9ecef;
+            }
 
         table {
             border-collapse: collapse;
@@ -114,11 +82,10 @@
         .modal-body{
             text-align-last: center;
             position: relative;
-      min-height: 100vh;
-      margin: 60;
-
-hr{
-margin:7px;}
+             margin: 40;
+         }
+		hr{
+			margin:7px;}
 
     </style>
 </head>
@@ -126,39 +93,58 @@ margin:7px;}
 
 
 <nav class="navbar navbar-expand-lg navbar-black">
-  
- <h1 style="color: blue; font-size: 26px;">NEP-BID</h1>
+
+            <h1 style="color: blue; font-size: 26px;">NEP-BID</h1>
 
 
- <div class="topnav">
-    <a class="active" href="#"></a>
-     <a class="active" href="#"></a>
-     <a class="active" href="#"></a>
-    <a class="active" href="home.jsp">Home</a>
-    <a  href="About.jsp">About Us</a>
-    <a href="product.jsp">Bid Products</a>
-    <a href="contactus.jsp">Contact Us </a>
-  
-
-      
-</div>
-  
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </li>
-      <li style="padding:10px; text-align:center; justify-content:center;">
-      <a href="home.jsp">Logout</a>
-      </li>
-    </ul>
-  </div>
+            <div class="topnav">
+                <a class="active" href="view.jsp"></a>
+                <a class="active" href="view.jsp"></a>
+                <a class="active" href="view.jsp"></a>
+                <a class="active" href="view.jsp"></a>
+                <a class="active" href="view.jsp"></a>
+                <a class="active" href="home.jsp">Home</a>
+                <a href="About.jsp">About Us</a>
+                <a href="Team.jsp">Team</a>
+                <a href="contactus.jsp">Contact Us </a>
 
 
-</nav>
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                    <%
+                   String user =(String) session.getAttribute("userRole");
+                    if("bidder".equals(user)){
+                    	Datainfo d = new Datainfo();
+                    	String name = (String) session.getAttribute("aid");
+
+                    %>
+                    <a class="nav-link" href="CustomerPanel.jsp"><%=d.biddername(Integer.parseInt(name)) %></a>
+                        
+                        
+                       <%
+                    } else{
+                       %>
+                       
+                        <%
+   							 String id = (String) session.getAttribute("aid");
+   							 Datainfo d = new Datainfo();
+    						
+    					%>
+    					<a class="nav-link" href="UserLogin.jsp">Login</a>
+                       
+                       <%
+                    }
+                       %>
+                    </li>
+                </ul>
+            </div>
+
+
+        </nav>
                     <%
 					int id = Integer.parseInt(request.getParameter("id"));
             		Datainfo datainfo = new Datainfo();
@@ -214,8 +200,8 @@ margin:7px;}
           <small id="bid-error" class="text-danger" style="display: none;">Please enter a bid amount greater than current price </small>
           
       </div>
-      <BR>
-      <button type="submit" class="btn btn-primary mt-3">Submit Bid</button>
+      <br>
+      <button type="submit" class="btn btn-primary mt-1">Submit Bid</button>
       </form>
       
       <script>
