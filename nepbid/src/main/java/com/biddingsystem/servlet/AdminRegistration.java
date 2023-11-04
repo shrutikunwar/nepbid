@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.biddingsystem.model.Admin;
 import com.biddingsystem.utill.DBConnect;
 
+import DataInfoImpl.PasswordHashing;
+
 /**
  * Servlet implementation class AdminRegistration
  */
@@ -65,7 +67,7 @@ public class AdminRegistration extends HttpServlet {
             statement.setString(2, contact);
             statement.setString(3, nic);
             statement.setString(4, username);
-            statement.setString(5, password);
+            statement.setString(5, PasswordHashing.hashpassword(password));
 
             int rowsInserted = statement.executeUpdate();
             

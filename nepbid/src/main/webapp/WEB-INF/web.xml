@@ -158,10 +158,6 @@
                 <servlet-name>SearchServlet</servlet-name>
                 <url-pattern>/Search</url-pattern>
     </servlet-mapping>
- 
- 
-
-
- 
+  
  
 </web-app>

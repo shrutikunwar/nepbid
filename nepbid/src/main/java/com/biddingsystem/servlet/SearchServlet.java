@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.biddingsystem.model.Bid;
+import com.biddingsystem.model.Products;
 
 import DataInfoImpl.Datainfo;
 
@@ -19,15 +20,24 @@ public class SearchServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	public SearchServlet() {
+		super();
+	}
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String search = request.getParameter("search");	
+		request.setAttribute("search",search);
+		request.getRequestDispatcher("SearchPage.jsp").forward(request, response);
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
         String searchTerm = request.getParameter("searchTerm");
-        Datainfo d = new Datainfo();
-        String id = (String) request.getSession().getAttribute("aid");
-        List<Bid> searchResults = d.searchBids(Integer.parseInt(id), searchTerm);
+        String id = request.getParameter("id");
+        List<Bid> searchResults = Datainfo.searchBids(Integer.parseInt(id), searchTerm);
         request.setAttribute("bids", searchResults);
-        request.getRequestDispatcher("ProductAlloted.jsp").forward(request, response);
-        
+        request.getRequestDispatcher("BidItems.jsp").forward(request, response);
+	
     }
 }

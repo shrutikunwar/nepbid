@@ -44,7 +44,7 @@ String name = d.biddername(Integer.parseInt(id));
 
                 <br>
                 <li>
-                    <a href="dashboard.html" target="content">
+                    <a href="CustomerDashboard.jsp" target="content">
                         <img src="./assets/images/dashboard.png" > 
                         Dashboard
                     </a>
@@ -86,7 +86,7 @@ String name = d.biddername(Integer.parseInt(id));
             </ul>
         </section>
         <section class="content-section">
-            <iframe name="content" id="content-frame" src="CUstomerdashboard.jsp" frameborder="0"></iframe>
+            <iframe name="content" id="content-frame" src="CustomerDashboard.jsp" frameborder="0"></iframe>
         </section>
     </div>
 </body>

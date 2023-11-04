@@ -4,7 +4,6 @@
 <html>
 
 <head>
-  <title>Bootstrap Navigation Bar</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 
@@ -334,12 +333,6 @@
       <a class="p-2 text-dark" href="About.jsp">About Us</a>
        <a class="p-2 text-dark" href="Team.jsp">Team</a>
 
-
-
-
-
-      <a class="btn btn-outline-primary mr-3" href="Adminlogin.jsp">Admin Login</a>
-
       <a class="btn btn-outline-primary" href="Userlogin.jsp">User Login</a>
 
   </div>
@@ -362,32 +355,32 @@
       <img src="assets/images/Rectangle 1 (2).png" alt="Image 1">
       <div class="description">Image 1 Description</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+        
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/Rectangle 1 (2).png" alt="Image 2">
       <div class="description">Image 2 Description</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+        
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/Rectangle 1 (2).png" alt="Image 3">
       <div class="description">Image 3 Description</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+        
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/Rectangle 1 (2).png" alt="Image 4">
       <div class="description">Image 4 Description</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+        
       </div>
     </div>
   </div>
@@ -397,32 +390,32 @@
       <img src="assets/images/Rectangle 1 (2).png" alt="Image 1">
       <div class="description">Image 1 Description</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+        
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/Rectangle 1 (2).png" alt="Image 2">
       <div class="description">Image 2 Description</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+        
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/Rectangle 1 (2).png" alt="Image 3">
       <div class="description">Image 3 Description</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+        
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/cloth banner new .png">
       <div class="description">Image 4 Description</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+        
       </div>
     </div>
   </div>

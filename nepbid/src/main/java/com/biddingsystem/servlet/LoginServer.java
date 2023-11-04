@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DataInfoImpl.LoginData;
+import DataInfoImpl.PasswordHashing;
 
 
 @WebServlet("/LoginServer")
@@ -30,14 +31,13 @@ public class LoginServer extends HttpServlet {
 		String password = request.getParameter("password");
 		String action = request.getParameter("action");
 
-
 		HttpSession session = null;
 		// check for the valid user.
 		
 		
 		switch (action) {
 		case "admin":
-			if(loginData.admin(id, password)) 
+			if(loginData.admin(id,PasswordHashing.hashpassword(password))) 
 			{
 				session = request.getSession();
 				session.setAttribute("aid",id);
@@ -56,7 +56,7 @@ public class LoginServer extends HttpServlet {
 			
 		case "seller":
 			
-			if(loginData.isSeller(id, password)) {
+			if(loginData.isSeller(id,PasswordHashing.hashpassword(password))) {
 				session = request.getSession();
 				session.setAttribute("aid",id);
 				session.setAttribute("userRole", "seller");
@@ -74,7 +74,7 @@ public class LoginServer extends HttpServlet {
 			break;
 		
 		    case "bidder":
-			if(loginData.user(id, password)) {
+			if(loginData.user(id,PasswordHashing.hashpassword(password))) {
 				session = request.getSession();
 				session.setAttribute("aid",id);
 				session.setAttribute("userRole", "bidder");

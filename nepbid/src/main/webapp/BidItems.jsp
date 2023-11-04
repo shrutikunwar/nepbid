@@ -73,8 +73,9 @@
 
    <div class="search-container">
         <form action="Search" method="post">
-            <label for="search">Search:</label>
-            <input type="text" id="search" name="searchTerm">
+            <label for="search">Product name:</label>
+            <input type="text" id="searchTerm" name="searchTerm">
+            <input type="hidden" name="id" value="<%=(String) session.getAttribute("aid") %>">
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -98,11 +99,7 @@
                <%
                Datainfo d = new Datainfo();
                String id = (String) session.getAttribute("aid");
-               List<Bid> b = (List<Bid>) request.getAttribute("bids");
-               
-               if(b==null || b.isEmpty() ){
-                  b = d.getAllBidsStatus(Integer.parseInt(id));
-               }
+               List<Bid> b =  d.getAllBidsStatus(Integer.parseInt(id));
                int i=0;
                for(Bid bd : b){
             	   i++;
@@ -118,7 +115,7 @@
                <%
                if("alloted".equals(bd.getStatus())){
                %>
-               <td><a href="paytem.jsp">Pay to receive</a></td>
+               <td><a href="Payment.jsp" target="_parent" >Pay to receive</a></td>
                <%
                }
                else{

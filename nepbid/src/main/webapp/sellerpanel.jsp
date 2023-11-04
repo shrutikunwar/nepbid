@@ -40,7 +40,7 @@ pageEncoding="ISO-8859-1"%>
 
                 <br>
                 <li>
-                    <a href="dashboard.html" target="content">
+                    <a href="SellerDashboard.jsp" target="content">
                         <img src="./assets/images/dashboard.png" > 
                         Dashboard
                     </a>
@@ -84,7 +84,7 @@ pageEncoding="ISO-8859-1"%>
             </ul>
         </section>
         <section class="content-section">
-            <iframe name="content" id="content-frame" src="dashboard.html" frameborder="0"></iframe>
+            <iframe name="content" id="content-frame" src="SellerDashboard.jsp" frameborder="0"></iframe>
         </section>
     </div>
 </body>

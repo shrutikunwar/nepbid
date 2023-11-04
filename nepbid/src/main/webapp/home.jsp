@@ -14,12 +14,6 @@ pageEncoding="ISO-8859-1"%>
 
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: 'Poppins', sans-serif;
-            }
             
             html,
             body {
@@ -121,10 +115,12 @@ pageEncoding="ISO-8859-1"%>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                    
+                        <form class="form-inline" action="Search" method="get" >
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search Items" name="search" id="search">
+                            <button type="submit" class="btn btn-outline-primary my-2 my-sm-0" >Search</button>
                         </form>
+                        
                     </li>
                     <li class="nav-item">
                     <%
