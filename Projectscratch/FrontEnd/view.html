@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+
+
+   
+        <title>Online Bidding System</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/styles/see.css">
+        <link rel="stylesheet" href="assets/styles/base.css">
+
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif;
+            }
+            
+            html,
+            body {
+                display: grid;
+                height: 100vh;
+                width: 100%;
+                place-items: left;
+                background: #e9ecef;
+            }
+            
+            footer {
+                background-color: #f2f2f2;
+                padding: 20px;
+                margin-top: auto;
+                /* Pushes the footer to the bottom */
+                background: #E3F2FD;
+            }
+            
+            .contact-details {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 20px;
+            }
+            
+            .contact-details ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .contact-details ul li {
+                margin-bottom: 5px;
+            }
+            
+            .bottom-details {
+                text-align: center;
+                width: 100%;
+                background: #CBC3E3;
+            }
+            
+            .bottom_text {
+                margin-top: 10px;
+            }
+            
+            .bottom_text a {
+                color: #333;
+                text-decoration: none;
+                margin-left: 0px;
+            }
+            
+            footer .bottom-details .bottom_text {
+                max-width: 1250px;
+                margin: auto;
+                padding: 10px 20px;
+            }
+            
+            a {
+                padding: 0px;
+            }
+            
+            hr {
+                margin: 7px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-black">
+
+            <h1 style="color: blue; font-size: 26px;">NEP-BID</h1>
+
+
+            <div class="topnav">
+                <a class="active" href="#"></a>
+                <a class="active" href="#"></a>
+                <a class="active" href="#"></a>
+                <a class="active" href="#"></a>
+                <a class="active" href="#"></a>
+                <a class="active" href="home.jsp">Home</a>
+                <a href="About.jsp">About Us</a>
+                <a href="Team.jsp">Team</a>
+                <a href="contactus.jsp">Contact Us </a>
+
+
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </li>
+                    
+                </ul>
+            </div>
+
+
+        </nav>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+<script>
+        window.onload = function() {
+            // Check session using AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'SessionCheckServlet', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = xhr.responseText;
+                    if (response === 'invalid') {
+                        // Redirect to error page if session is invalid
+                        window.location.href = 'ErrorPage.jsp';
+                    }
+                }
+            };
+            xhr.send();
+        };
+    </script>
+    <title>Product Information</title>
+   
+                    <%
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    Datainfo datainfo = new Datainfo();
+                    Products p = datainfo.getAllProductsDetails(id);
+                    %>
+    
+
+    
+    <h1 style="color: navy blue; font-size: 26px; padding: 0px 0px" align="center">Product Information Table </h1>
+    
+ 
+    <div class="container">
+        <div class="product-container">
+          <div class="product-image">
+            <!-- Add the image here -->
+            <img src="<%=p.getImage() %>" alt="Product Image">
+          </div>
+
+         
+          <table>
+              <tr>
+                  <th class="product-details" colspan="2">Product Details</th>
+              </tr>
+              <tr>
+                  <td>Product ID</td>
+                  <td contenteditable="false"><%=p.getProductid() %></td>
+              </tr>
+              <tr>
+                  <td>Product Name</td>
+                  <td contenteditable="false"><%=p.getProductname() %></td>
+              </tr>
+              <tr>
+                  <td>Product Category</td>
+                  <td contenteditable="false"><%=p.getProductcategory() %></td>
+              </tr>
+              <tr>
+                  <td>Product Description</td>
+                  <td contenteditable="false"><%=p.getProductdescription() %></td>
+              </tr>
+              <tr>
+                  <td>Current Bid Price</td>
+                  <td contenteditable="false"><%=p.getStarting_bp() %></td>
+              </tr>
+              <!-- Additional rows can be added here -->
+          </table>
+          <div class="modal-body" style="padding-top:10px;">
+      <form id="bid-form" action="bidp" method="post">
+      <div class="form-group">
+          <input type="hidden" id="bidid" name="bidderid" value=<%=(String) session.getAttribute("aid") %>>
+          <label for="bid-amount">Bid Amount:</label>
+          <input type="number" id="bidamount" name="bidamount" required>
+          <input type="hidden" id="pid" name="pid" value="<%=p.getProductid()%>">
+          <small id="bid-error" class="text-danger" style="display: none;">Please enter a bid amount greater than current price </small>
+          
+      </div>
+      <BR>
+      <button type="submit" class="btn btn-primary mt-3">Submit Bid</button>
+      </form>
+      
+      <script>
+      document.getElementById("bid-form").addEventListener("submit", function(event) {
+          var bidAmount = document.getElementById("bid-amount").value;
+          if (bidAmount < currentprice ) {
+              event.preventDefault();
+              document.getElementById("bid-error").style.display = "block";
+          } else {
+              document.getElementById("bid-error").style.display = "none";
+          }
+      });
+      </script>
+      
+      </div>
+      </body>
+      </html>
+  
