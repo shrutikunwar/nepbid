@@ -16,8 +16,13 @@ body {
 
 .side-section {
     width: 16%;
+<<<<<<< HEAD
+    background-color: #1e2536;
+    color: #ffffff;
+=======
     background-color: #a39adf;
     color: #000000;
+>>>>>>> 1dacb5dadbdde7cb75f47b190782692ea7c9d071
 }
 
 .side-section .profile {
