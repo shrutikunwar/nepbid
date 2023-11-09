@@ -2,15 +2,46 @@
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4" id="WebApp_ID">
 	<display-name>nepbid</display-name>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>home.jsp</welcome-file>
 	</welcome-file-list>
 	
+	
+	<!-- Define an error page--> 
+  <error-page>
+    <error-code>500</error-code>
+    <location>/errorHandler</location>
+</error-page>
 
+  <error-page>
+    <error-code>405</error-code>
+    <location>/errorHandler</location>
+</error-page>
+
+<error-page>
+    <error-code>404</error-code>
+    <location>/errorHandler</location>
+</error-page>
+
+
+
+
+<!-- Set the session timeout in minutes (e.g., 30 minutes) -->
+<session-config>
+    <session-timeout>30</session-timeout>
+</session-config>
+
+<!-- Define an error page for session timeout -->
+<error-page>
+    <error-code>408</error-code>
+    <location>/sessionTimeoutError.jsp</location>
+</error-page>
+
+<!-- Define an error page for other errors -->
+<error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/errorHandler.jsp</location>
+</error-page>
+	
  <servlet>
         <servlet-name>TransactionServlet</servlet-name>
         <servlet-class>com.biddingsystem.servlet.TransactionServlet</servlet-class>
@@ -21,14 +52,6 @@
         <url-pattern>/transaction</url-pattern>
     </servlet-mapping>
     
-    <servlet>
-    <servlet-name>Adminservlet</servlet-name>
-    <servlet-class>com.biddingsystem.servlet.Adminservlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Adminservlet</servlet-name>
-    <url-pattern>/Admin</url-pattern>
-  </servlet-mapping>
   
   
   <servlet>
@@ -52,24 +75,16 @@
                 <url-pattern>/Addproduct</url-pattern>
     </servlet-mapping>
     
-      <servlet>
-          <servlet-name>BidderLogin</servlet-name>
-          <servlet-class>com.biddingsystem.servlet.BidderLogin</servlet-class>
-  </servlet>
-    
-    <servlet-mapping>
-                <servlet-name>BidderLogin</servlet-name>
-                <url-pattern>/bidder</url-pattern>
-    </servlet-mapping>
+      
     
        <servlet>
-          <servlet-name>sellerLogin</servlet-name>
-          <servlet-class>com.biddingsystem.servlet.sellerLogin</servlet-class>
+          <servlet-name>LoginServer</servlet-name>
+          <servlet-class>com.biddingsystem.servlet.LoginServer</servlet-class>
   </servlet>
     
     <servlet-mapping>
-                <servlet-name>sellerLogin</servlet-name>
-                <url-pattern>/seller</url-pattern>
+                <servlet-name>LoginServer</servlet-name>
+                <url-pattern>/login</url-pattern>
     </servlet-mapping>
     
       <servlet>
@@ -122,6 +137,50 @@
                 <servlet-name>NotAlloted</servlet-name>
                 <url-pattern>/noallot</url-pattern>
     </servlet-mapping>
- 
+    
+    
+        <servlet>
+          <servlet-name>LogoutPage</servlet-name>
+          <servlet-class>com.biddingsystem.servlet.LogoutPage</servlet-class>
+  </servlet>
+    
+    <servlet-mapping>
+                <servlet-name>LogoutPage</servlet-name>
+                <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+          <servlet-name>SearchServlet</servlet-name>
+          <servlet-class>com.biddingsystem.servlet.SearchServlet</servlet-class>
+  </servlet>
+    
+    <servlet-mapping>
+                <servlet-name>SearchServlet</servlet-name>
+                <url-pattern>/Search</url-pattern>
+    </servlet-mapping>
+    
+    
+         <servlet>
+          <servlet-name>SendMessages</servlet-name>
+          <servlet-class>com.biddingsystem.servlet.SendMessages</servlet-class>
+  </servlet>
+    
+    <servlet-mapping>
+                <servlet-name>SendMessages</servlet-name>
+                <url-pattern>/SendMessage</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+     <servlet>
+          <servlet-name>MailService</servlet-name>
+          <servlet-class>com.biddingsystem.servlet.MailService</servlet-class>
+  </servlet>
+    
+    <servlet-mapping>
+                <servlet-name>MailService</servlet-name>
+                <url-pattern>/SendEmail</url-pattern>
+    </servlet-mapping>
+  
  
 </web-app>

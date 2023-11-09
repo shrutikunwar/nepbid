@@ -5,18 +5,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 import com.biddingsystem.utill.DBConnect;
 
 public class LoginData {
+	Connection connection= null;
+	PreparedStatement preparedStatement= null;
+	
 	
 	public boolean admin(String username,String password){
 		boolean isexists = false;
-		String sql = "select * from admin where Adminusername = ? and Adminpassword =?";
+		
+		String sql = "select * from admin where Adminusername = ? and Adminpassword = ?";
 		
 		try {
-			Connection connection = DBConnect.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			connection = DBConnect.getConnection();
+			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setString(1, username);
 			preparedStatement.setString(2, password);
@@ -29,21 +32,29 @@ public class LoginData {
 		} catch (SQLException e) {
 			// TODO: handle exception
 		}
-		
+		finally {
+			try {
+				connection.close();
+				preparedStatement.close();
+			}
+			catch(Exception e) {
+				
+			}
+		}
 
 		return isexists;
 	}
 	
 	
-	public boolean user(String email,String password){
+	public boolean user(String id,String password){
 		boolean isexists = false;
-		String sql = "select * from bidder where email = ? and password =?";
+		String sql = "select * from bidder where bidderid = ? and password =?";
 		
 		try {
-			Connection connection = DBConnect.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			connection = DBConnect.getConnection();
+			preparedStatement = connection.prepareStatement(sql);
 			
-			preparedStatement.setString(1, email);
+			preparedStatement.setInt(1,Integer.parseInt(id));
 			preparedStatement.setString(2, password);
 			
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -54,19 +65,29 @@ public class LoginData {
 		} catch (SQLException e) {
 			// TODO: handle exception
 		}
+		finally {
+			try {
+				connection.close();
+				preparedStatement.close();
+			}
+			catch(Exception e) {
+				
+			}
+		}
+
 		
 		return isexists;
 	}
 	
-	public boolean isSeller(String email,String password){
+	public boolean isSeller(String id,String password){
 		boolean isexists = false;
-		String sql = "select * from sellers where semail = ? and spassword =?";
+		String sql = "select * from sellers where Seller_id = ? and spassword =?";
 		
 		try {
-			Connection connection = DBConnect.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			connection = DBConnect.getConnection();
+			preparedStatement = connection.prepareStatement(sql);
 			
-			preparedStatement.setString(1, email);
+			preparedStatement.setInt(1,Integer.parseInt(id));
 			preparedStatement.setString(2, password);
 			
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -77,8 +98,16 @@ public class LoginData {
 		} catch (SQLException e) {
 			// TODO: handle exception
 		}
+		finally {
+			try {
+				connection.close();
+				preparedStatement.close();
+			}
+			catch(Exception e) {
+				
+			}
+		}
 		
-
 		return isexists;
 	}
 

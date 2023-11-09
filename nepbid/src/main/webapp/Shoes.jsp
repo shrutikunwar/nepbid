@@ -4,7 +4,6 @@
 <html>
 
 <head>
-  <title>Bootstrap Navigation Bar</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 
@@ -167,8 +166,9 @@
       display: flex;
 
       align-items: center;
+      text-align:center;
 
-      justify-content: space-between;
+      justify-content: center;
 
       margin-bottom: 10px;
       /* Decrease the margin-bottom value */
@@ -326,16 +326,7 @@
 
 
       <a class="p-2 text-dark" href="home.jsp">Home</a>
-
-      <a class="p-2 text-dark" href="product.jsp">Products</a>
-
       <a class="p-2 text-dark" href="About.jsp">About Us</a>
-
-
-
-
-
-      <a class="btn btn-outline-primary mr-3" href="Adminlogin.jsp">Admin Login</a>
 
       <a class="btn btn-outline-primary" href="Userlogin.jsp">User Login</a>
 
@@ -359,32 +350,32 @@
       <img src="assets/images/Kylie jenner's Rare Nike Sneakers.png" alt="Image 1">
       <div class="description">Kylie jenner's Rare Nike Sneakers</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+       
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/gucci heels categories shoes 1.png" alt="Image 2">
       <div class="description">/Gucci Heels</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+       
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/barker shoes categoris shoes 1.png" alt="Image 3">
       <div class="description">Barker shoes</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+       
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/floral platform wedge heel sandals categories shoes 1.png" alt="Image 4">
       <div class="description">Floral platform wedge heel sandals</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+       
       </div>
     </div>
   </div>
@@ -394,32 +385,32 @@
       <img src="assets/images/categories shoes 1.png" alt="Image 1">
       <div class="description">Unisex Sneerker</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+       
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/categories shoes 2.png" alt="Image 2">
       <div class="description">Confy sneekers</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+       
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/Masaba Gupta Collaborates with Puma Capsule Sneaker.png" alt="Image 3">
       <div class="description">Masaba Gupta Collaborates with Puma Capsule Sneaker</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+       
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/Adidas Stan Smith Golf Shoes Limited Edition.png" alt="Image 4">
       <div class="description">Image 4 Description</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+       
       </div>
     </div>
   </div>
@@ -432,11 +423,11 @@
 
       <div class="top">
 
-        <div class="logo-details">
+        <div class="logo-details" style="text-align:center; justify-content:center;">
 
           <i class="fab fa-slack"></i>
 
-          <span class="logo_name">NEP-BID</span>
+          <span class="logo_name" ><b>NEP-BID</b></span>
 
         </div>
 
@@ -446,41 +437,33 @@
 
         <ul class="box">
 
-          <a class="link_name">Company</a>
+          <li style="list-style-type:none; font-wight:600px;"><b>Company</b></li>
+          <p>Strategic bidding experts securing lucrative contracts for client success.</p>
 
-          <li><a href="#">Home</a></li>
-
-          <li><a href="#">Contact us</a></li>
-
-          <li><a href="#">About us</a></li>
-
-          <li><a href="#">Get started</a></li>
 
         </ul>
 
         <ul class="box">
 
-          <a class="link_name">Services</a>
+          <li style="list-style-type:none; font-wight:600px;"><b>Services</b></li>
 
-          <li><a href="#">Buying</a></li>
+          <li>Buying</li>
 
-          <li><a href="#">Selling</a></li>
+          <li>Selling</li>
 
-          <li><a href="#">Payment</a></li>
+          <li>Payment</li>
 
         </ul>
 
         <ul class="box">
 
-          <a class="link_name">Account</a>
+          <li style="list-style-type:none; font-wight:600px;"><b>Account</b></li>
 
-          <li><a href="#">Profile</a></li>
+          <li>Profile</li>
 
-          <li><a href="#">My account</a></li>
+          <li>Products</li>
 
-          <li><a href="#">Preferences</a></li>
-
-          <li><a href="#">Purchase</a></li>
+          <li>Purchase</li>
 
         </ul>
 
@@ -500,7 +483,7 @@
 
         <span class="policy_terms">
 
-          <a href="#000000">Privacy policy</a>
+          <a href="#000000">Privacy policy</a> | 
 
           <a href="#000000">Terms & conditions</a>
 

@@ -168,8 +168,9 @@
       display: flex;
 
       align-items: center;
+ text-align:center;
 
-      justify-content: space-between;
+      justify-content: center;
 
       margin-bottom: 10px;
       /* Decrease the margin-bottom value */
@@ -331,16 +332,7 @@
 
 
       <a class="p-2 text-dark" href="home.jsp">Home</a>
-
-      <a class="p-2 text-dark" href="product.jsp">Products</a>
-
       <a class="p-2 text-dark" href="About.jsp">About Us</a>
-
-
-
-
-
-      <a class="btn btn-outline-primary mr-3" href="Adminlogin.jsp">Admin Login</a>
 
       <a class="btn btn-outline-primary" href="Userlogin.jsp">User Login</a>
 
@@ -364,32 +356,32 @@
       <img src="assets/images/nike comfy clothes 1.png" alt="Image 1">
       <div class="description">nike comfy clothes</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+        
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/women's leather bijer jacket 1.png" alt="Image 2">
       <div class="description">women's leather bijer jacket 1.png</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+        
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/plain tuxedo men suit 1.png" alt="Image 3">
       <div class="description">plain tuxedo men suit </div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+        
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/Filipinisana dress semi formal dress 1.png" alt="Image 4">
       <div class="description">Filipinisana dress semi formal dress </div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+        
       </div>
     </div>
   </div>
@@ -399,49 +391,49 @@
       <img src="assets/images/ball gowns dress 1.png" alt="Image 1">
       <div class="description">ball gowns dress</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+        
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/gucci shirt 1.png" alt="Image 2">
       <div class="description">gucci shirt</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+        
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/Gucci Beige Unisex hoodie 2.png" alt="Image 3">
       <div class="description">Gucci Beige Unisex hoodie</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+        
       </div>
     </div>
     <div class="image-container">
       <img src="assets/images/hm_office_wearblazer_ 1.png">
       <div class="description">h&m women's carrer office wear</div>
       <div class="links">
-        <a href="bid.html">Bid Now</a>
-        <a href="view.html">View</a>
+        <a href="view.jsp">Bid Now</a>
+        
       </div>
     </div>
   </div>
 
 
 
-  <footer>
+<footer>
 
     <div class="content">
 
       <div class="top">
 
-        <div class="logo-details">
+        <div class="logo-details" style="text-align:center; justify-content:center;">
 
           <i class="fab fa-slack"></i>
 
-          <span class="logo_name">NEP-BID</span>
+          <span class="logo_name" ><b>NEP-BID</b></span>
 
         </div>
 
@@ -451,41 +443,33 @@
 
         <ul class="box">
 
-          <a class="link_name">Company</a>
+          <li style="list-style-type:none; font-wight:600px;"><b>Company</b></li>
+          <p>Strategic bidding experts securing lucrative contracts for client success.</p>
 
-          <li><a href="#">Home</a></li>
-
-          <li><a href="#">Contact us</a></li>
-
-          <li><a href="#">About us</a></li>
-
-          <li><a href="#">Get started</a></li>
 
         </ul>
 
         <ul class="box">
 
-          <a class="link_name">Services</a>
+          <li style="list-style-type:none; font-wight:600px;"><b>Services</b></li>
 
-          <li><a href="#">Buying</a></li>
+          <li>Buying</li>
 
-          <li><a href="#">Selling</a></li>
+          <li>Selling</li>
 
-          <li><a href="#">Payment</a></li>
+          <li>Payment</li>
 
         </ul>
 
         <ul class="box">
 
-          <a class="link_name">Account</a>
+          <li style="list-style-type:none; font-wight:600px;"><b>Account</b></li>
 
-          <li><a href="#">Profile</a></li>
+          <li>Profile</li>
 
-          <li><a href="#">My account</a></li>
+          <li>Products</li>
 
-          <li><a href="#">Preferences</a></li>
-
-          <li><a href="#">Purchase</a></li>
+          <li>Purchase</li>
 
         </ul>
 
@@ -505,7 +489,7 @@
 
         <span class="policy_terms">
 
-          <a href="#000000">Privacy policy</a>
+          <a href="#000000">Privacy policy</a> | 
 
           <a href="#000000">Terms & conditions</a>
 

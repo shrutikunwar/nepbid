@@ -7,12 +7,23 @@ public class Bid {
 	int bid;
 	int bidamount;
 	String status;
+	String productname;
 	
 	
 	
 	
 	
 	
+	public String getProductname() {
+		return productname;
+	}
+
+
+	public void setProductname(String productname) {
+		this.productname = productname;
+	}
+
+
 	public int getPid() {
 		return pid;
 	}

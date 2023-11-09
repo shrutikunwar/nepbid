@@ -1,69 +1,71 @@
-<%@page import="DataInfoImpl.Datainfo,java.util.List"%>
-<%@page import="com.biddingsystem.model.Products"%>
+<%@page import="DataInfoImpl.Datainfo, com.biddingsystem.model.Products, java.util.List"%>
+<%@page import="java.io.IOException"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@page errorPage="ErrorPage.jsp" %>
+<%@ page session="true" %>
 
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+<%
+    String userRole = (String) session.getAttribute("userRole");
+    if (userRole == null || !userRole.equals("bidder")) {
+        response.sendRedirect("ErrorPage.jsp"); // Redirect to error page if not logged in as a bidder
+    } else {
+        // User is logged in as a bidder, proceed with displaying the page content
+        int id = Integer.parseInt(request.getParameter("id"));
+        Datainfo datainfo = new Datainfo();
+        Products p = datainfo.getAllProductsDetails(id);
+    }
+%>
 
 
 <!DOCTYPE html>
 <html>
 <head>
+
+
+<script>
+        window.onload = function() {
+            // Check session using AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'SessionCheckServlet', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = xhr.responseText;
+                    if (response === 'invalid') {
+                        // Redirect to error page if session is invalid
+                        window.location.href = 'ErrorPage.jsp';
+                    }
+                }
+            };
+            xhr.send();
+        };
+    </script>
+    
+    
     <title>Product Information</title>
+    
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/styles/see.css">
+    <link rel="stylesheet" href="assets/styles/base.css">
+    
     <style>
-  
-        }
-   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-
-    * {
-
-      margin: 0;
-
-      padding: 0;
-
-      box-sizing: border-box;
-
-      font-family: 'Poppins', sans-serif;
-
+    
+    .product-container{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    flex-wrap:wrap;
     }
-
-
 
     html,
-    body {
+            body {
 
-      display: grid;
-
-      height: 100vh;
-
-      width: 100%;
-
-      place-items: left;
-
-      background: #e9ecef;
-
-    }
-
-
-       .navbar {
-            background-color: #f0e0e0;
-            overflow: hidden;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            
-        }
-
-        .navbar a {
-            color: rgb(0, 0, 0);
-            text-decoration: none;
-            padding: 10px 20px;
-        }
-
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
+                height: 100vh;
+                width: 100%;
+                place-items: left;
+                background: view.jspe9ecef;
+            }
 
         table {
             border-collapse: collapse;
@@ -87,11 +89,10 @@
         .modal-body{
             text-align-last: center;
             position: relative;
-      min-height: 100vh;
-      margin: 60;
-
-hr{
-margin:7px;}
+             margin: 40;
+         }
+		hr{
+			margin:7px;}
 
     </style>
 </head>
@@ -99,40 +100,59 @@ margin:7px;}
 
 
 <nav class="navbar navbar-expand-lg navbar-black">
-  
- <h1 style="color: blue; font-size: 26px;">NEP-BID</h1>
+
+            <h1 style="color: blue; font-size: 26px;">NEP-BID</h1>
 
 
- <div class="topnav">
-    <a class="active" href="#"></a>
-     <a class="active" href="#"></a>
-     <a class="active" href="#"></a>
-    <a class="active" href="home.jsp">Home</a>
-    <a  href="About.jsp">About Us</a>
-    <a href="product.jsp">Bid Products</a>
-    <a href="contactus.jsp">Contact Us </a>
-  
-
-      
-</div>
-  
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </li>
-      <li style="padding:10px; text-align:center; justify-content:center;">
-      <a href="home.jsp">Logout</a>
-      </li>
-    </ul>
-  </div>
+            <div class="topnav">
+                <a class="active" href="view.jsp"></a>
+                <a class="active" href="view.jsp"></a>
+                <a class="active" href="view.jsp"></a>
+                <a class="active" href="view.jsp"></a>
+                <a class="active" href="view.jsp"></a>
+                <a class="active" href="home.jsp">Home</a>
+                <a href="About.jsp">About Us</a>
+                <a href="Team.jsp">Team</a>
+                <a href="contactus.jsp">Contact Us </a>
 
 
-</nav>
-   <%
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                    <%
+                   String user =(String) session.getAttribute("userRole");
+                    if("bidder".equals(user)){
+                    	Datainfo d = new Datainfo();
+                    	String name = (String) session.getAttribute("aid");
+
+                    %>
+                    <a class="nav-link" href="CustomerPanel.jsp"><%=d.biddername(Integer.parseInt(name)) %></a>
+                        
+                        
+                       <%
+                    } else{
+                       %>
+                       
+                        <%
+   							 String id = (String) session.getAttribute("aid");
+   							 Datainfo d = new Datainfo();
+    						
+    					%>
+    					<a class="nav-link" href="UserLogin.jsp">Login</a>
+                       
+                       <%
+                    }
+                       %>
+                    </li>
+                </ul>
+            </div>
+
+
+        </nav>
+                    <%
 					int id = Integer.parseInt(request.getParameter("id"));
             		Datainfo datainfo = new Datainfo();
                     Products p = datainfo.getAllProductsDetails(id);
@@ -140,17 +160,15 @@ margin:7px;}
     
 
     
-    <h1 style="color: navy blue; font-size: 26px; padding: 0px 0px" align="center">Product Information Table </h1>
+    <h1 style="color:navy blue; font-size: 26px; margin-bottom:40px; text-align:center;">Product Information Table </h1>
     
  
     <div class="container">
         <div class="product-container">
           <div class="product-image">
-            <!-- Add the image here -->
-            <img src="<%=p.getImage() %>" alt="Product Image">
+            <img src="<%=p.getImage() %>" alt="Product Image" width=300px; height=300px;>
           </div>
-
-         
+          <div class="productdata">
           <table>
               <tr>
                   <th class="product-details" colspan="2">Product Details</th>
@@ -177,20 +195,23 @@ margin:7px;}
               </tr>
               <!-- Additional rows can be added here -->
           </table>
-          <div class="modal-body" style="padding-top:10px;">
-      <form id="bid-form" action="bidp" method="post">
-      <div class="form-group">
-      <label for="bid-amount">Bidder id:</label>
-          <input type="number" id="bidid" name="bidderid" required>
-          <label for="bid-amount">Bid Amount:</label>
-          <input type="number" id="bidamount" name="bidamount" required>
-          <input type="hidden" id="pid" name="pid" value="<%=p.getProductid()%>">
-          <small id="bid-error" class="text-danger" style="display: none;">Please enter a bid amount greater than current price </small>
           
-      </div>
-      <BR>
-      <button type="submit" class="btn btn-primary mt-3">Submit Bid</button>
-      </form>
+          <div class="modal-body" style="padding-top:10px;">
+           
+           
+           <form id="bid-form" action="bidp" method="post">
+      
+          <div class="form-group">
+                  <input type="hidden" id="bidid" name="bidderid" value=<%=(String) session.getAttribute("aid") %>>
+                  <label for="bid-amount">Bid Amount:</label>
+                  <input type="number" id="bidamount" name="bidamount" required>
+                  <input type="hidden" id="pid" name="pid" value="<%=p.getProductid()%>">
+                  <small id="bid-error" class="text-danger" style="display: none;">Please enter a bid amount greater than current price </small>
+                  
+         </div>
+          <br>
+            <button type="submit" class="btn btn-primary mt-1">Submit Bid</button>
+        </form>
       
       <script>
       document.getElementById("bid-form").addEventListener("submit", function(event) {
@@ -205,6 +226,13 @@ margin:7px;}
       </script>
       
       </div>
+          </div>
+          </div>
+          
+          </div>
+
+         
+          
       </body>
       </html>
   

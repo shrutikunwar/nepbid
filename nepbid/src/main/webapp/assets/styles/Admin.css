@@ -69,3 +69,25 @@ body {
     height: 100%;
     border: none;
 }
+
+
+.logout {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+}
+
+.logout  button {
+    background-color: transparent;
+    border: none;
+    font-size: large;
+    text-align: center;
+    color: white;
+}
+
+.logout img,
+.logout button {
+    display: inline-block;
+    vertical-align: middle;
+}

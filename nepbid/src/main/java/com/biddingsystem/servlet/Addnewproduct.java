@@ -19,8 +19,6 @@ import javax.servlet.http.Part;
 import com.biddingsystem.model.Products;
 import com.biddingsystem.utill.DBConnect;
 
-import DataInfoImpl.Datainfo;
-
 @WebServlet("/Addnewproduct")
 @MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
 maxFileSize=1024*1024*10,      // 10MB
@@ -39,8 +37,8 @@ public class Addnewproduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
     	
-        System.out.println("Product received.");
-        PrintWriter out = response.getWriter();
+        @SuppressWarnings("unused")
+		PrintWriter out = response.getWriter();
         String savePath = "E:" +File.separator+"d"+File.separator+"nepbid"+File.separator+"src"+File.separator+"main"+File.separator
         		+"webapp"+File.separator+"assets"+File.separator+ SAVE_DIR;
             File fileSaveDir=new File(savePath);

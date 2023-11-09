@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,10 +117,22 @@
             <input type="submit" value="Apply for Seller Account">
         </form>
         
-     <div class="message-box">
-            <c:if test="${not empty message}">
-                <span class="message ${success ? 'success' : 'error'}">${message}</span>
-            </c:if>
+      <div class="message-box">
+	<%  String s =(String) request.getAttribute("message"); 
+	
+		if(s != null){
+	%>
+                <span class="message "><%=s %></span>
+                
+                <%
+		}
+                %>
+                
+                
+        </div>
+        
+        <div class="backtologin">
+        <a href="SellerLogin.jsp">Go Back To Seller Login</a>
         </div>
     </div>
 </body>

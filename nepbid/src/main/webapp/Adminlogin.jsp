@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 		<!DOCTYPE html>
 		<html>
 
 		<head>
 			<meta charset="ISO-8859-1">
-			<title>User Login</title>
+			<title>Admin Login</title>
 			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 				integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 				crossorigin="anonymous">
@@ -55,6 +54,7 @@
 						padding: 25px 30px;
 						border-radius: 5px;
 						box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+						margin-top:50px;
 					}
 
 
@@ -165,27 +165,13 @@
 
 
 			<body>
-				<div
-					class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-
-					<p class="my-0 mr-md-auto font-weight-normal" style="font-size:180%;"><b>NepBid</b></p>
-					<nav class="my-2 my-md-0 mr-md-3">
-						<a class="p-2 text-dark" href="home.jsp">Home</a>
-						<a class="p-2 text-dark" href="product.jsp">Products</a>
-						<a class="p-2 text-dark" href="About.jsp">About Us</a>
-
-					</nav>
-					<a class="btn btn-outline-primary" href="UserLogin.jsp">User Login</a>
-			
-					<a class="btn btn-outline-primary" href="SellerLogin.jsp">Seller Login</a>
-				</div>
 
 
 					<div class="container">
-						<form action="Admin" method="post">
+						<form action="login" method="post">
 							<div class="title">Admin Login </div>
 							<div class="input-box underline">
-								<input type="text" name="username" placeholder="Enter Your username" required>
+								<input type="text" name="id" placeholder="Enter Your username" required>
 								<div class="underline"></div>
 							</div>
 
@@ -195,18 +181,16 @@
 							</div>
 
 							<div class="input-box button">
+							<input type="hidden" name = "action" value="admin">
 								<input type="submit">
 							</div>
 							<a href="AdminRegistration.jsp">Or, register as an admin</a>
 
 						</form>
+						<div class="error-message hidden" id="error-message"></div>
 					</div>
 
-					<div class="message-box">
-						<c:if test="${not empty message}">
-							<span class="message ${success ? 'success' : 'error'}">${message}</span>
-						</c:if>
-					</div>
+					
 
 
 

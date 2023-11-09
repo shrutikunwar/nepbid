@@ -1,7 +1,6 @@
 package com.biddingsystem.servlet;
 
 import java.io.IOException;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -13,10 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
-import com.biddingsystem.model.Transaction;
 import com.biddingsystem.utill.DBConnect;
+
+import DataInfoImpl.CheckDupliacteData;
+import DataInfoImpl.PasswordHashing;
 
 
 /**
@@ -42,36 +41,29 @@ public class TransactionServlet extends HttpServlet {
 	        String saddress = request.getParameter("address");
 	        String semail = request.getParameter("email");
 	        String spassword = request.getParameter("password");
-	        String sellerid = request.getParameter("sellerid");
 	        
 	       
 	        
 	        RequestDispatcher dispatcher = null;
 	        Connection conn = null;
 
-	        // Create a seller object and set its properties
-	        Transaction seller = new Transaction();
-	        seller.setSname(sname);
-	        seller.setScontact(scontact);
-	        seller.setSaddress(saddress);
-	        seller.setSemail(semail);
-	        seller.setSpassword(spassword);
-	      
 	        
-
+	        if(CheckDupliacteData.isSellerPresent(semail) == true) {
+	        	request.setAttribute("message", "User Already Present");
+	        }
+	        else {
 
 	        try {
 	            // Insert the seller into the database
 	            conn = DBConnect.getConnection();
-	            String sql = "INSERT INTO sellers (sname, scontact, saddress, semail, spassword) VALUES (?, ?, ?, ?, ?, ?)";
+	            String sql = "INSERT INTO sellers (sname, scontact, saddress, semail, spassword) VALUES (?, ?, ?, ?, ?)";
 	            PreparedStatement statement = conn.prepareStatement(sql);
 
-	            statement.setString(1, seller.getSname());
-	            statement.setString(2, seller.getScontact());
-	            statement.setString(3, seller.getSaddress());
-	            statement.setString(4, seller.getSemail());
-	            statement.setString(5, seller.getSpassword());
-	            statement.setInt(6, seller.getSellerid());
+	            statement.setString(1, sname);
+	            statement.setString(2, scontact);
+	            statement.setString(3, saddress);
+	            statement.setString(4, semail);
+	            statement.setString(5, PasswordHashing.hashpassword(spassword));
 
 	            int rowsInserted = statement.executeUpdate();
 	            
@@ -88,6 +80,8 @@ public class TransactionServlet extends HttpServlet {
 	            conn.close();
 	        } catch (SQLException e) {
 	            e.printStackTrace();
+	        }
+	        
 	        }
 	        dispatcher = request.getRequestDispatcher("transaction.jsp");
 	        dispatcher.forward(request, response);
