@@ -92,8 +92,7 @@ font-size: 3.5rem;
     </div>
     
     <div class="form-group">
-      <label for="exampleInputPassword1">Sellerid</label>
-      <input name="sellerid" type="number" id="sellerid" class="form-control">
+      <input name="sellerid" type="hidden" value=<%=(String) session.getAttribute("aid") %> id="sellerid" class="form-control">
     </div>
 
     

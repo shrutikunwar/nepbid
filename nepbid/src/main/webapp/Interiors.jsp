@@ -167,9 +167,9 @@
 
       display: flex;
 
-      align-items: center;
+       text-align:center;
 
-      justify-content: space-between;
+      justify-content: center;
 
       margin-bottom: 10px;
       /* Decrease the margin-bottom value */
@@ -327,9 +327,6 @@
 
       <a class="p-2 text-dark" href="home.jsp">Home</a>
 
-      <a class="p-2 text-dark" href="product.jsp">Products</a>
-
- <a class="p-2 text-dark" href="Team.jsp">Team</a>
       <a class="p-2 text-dark" href="About.jsp">About Us</a>
 
       <a class="btn btn-outline-primary" href="Userlogin.jsp">User Login</a>
@@ -423,17 +420,17 @@
     <a href="learn-more.html">Learn More</a>
   </div>
 
-  <footer>
+<footer>
 
     <div class="content">
 
       <div class="top">
 
-        <div class="logo-details">
+        <div class="logo-details" style="text-align:center; justify-content:center;">
 
           <i class="fab fa-slack"></i>
 
-          <span class="logo_name">NEP-BID</span>
+          <span class="logo_name" ><b>NEP-BID</b></span>
 
         </div>
 
@@ -443,41 +440,33 @@
 
         <ul class="box">
 
-          <a class="link_name">Company</a>
+          <li style="list-style-type:none; font-wight:600px;"><b>Company</b></li>
+          <p>Strategic bidding experts securing lucrative contracts for client success.</p>
 
-          <li><a href="#">Home</a></li>
-
-          <li><a href="#">Contact us</a></li>
-
-          <li><a href="#">About us</a></li>
-
-          <li><a href="#">Get started</a></li>
 
         </ul>
 
         <ul class="box">
 
-          <a class="link_name">Services</a>
+          <li style="list-style-type:none; font-wight:600px;"><b>Services</b></li>
 
-          <li><a href="#">Buying</a></li>
+          <li>Buying</li>
 
-          <li><a href="#">Selling</a></li>
+          <li>Selling</li>
 
-          <li><a href="#">Payment</a></li>
+          <li>Payment</li>
 
         </ul>
 
         <ul class="box">
 
-          <a class="link_name">Account</a>
+          <li style="list-style-type:none; font-wight:600px;"><b>Account</b></li>
 
-          <li><a href="#">Profile</a></li>
+          <li>Profile</li>
 
-          <li><a href="#">My account</a></li>
+          <li>Products</li>
 
-          <li><a href="#">Preferences</a></li>
-
-          <li><a href="#">Purchase</a></li>
+          <li>Purchase</li>
 
         </ul>
 
@@ -497,7 +486,7 @@
 
         <span class="policy_terms">
 
-          <a href="#000000">Privacy policy</a>
+          <a href="#000000">Privacy policy</a> | 
 
           <a href="#000000">Terms & conditions</a>
 
@@ -508,6 +497,7 @@
     </div>
 
   </footer>
+
 
 
 

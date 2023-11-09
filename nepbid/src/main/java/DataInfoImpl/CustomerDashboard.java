@@ -18,8 +18,8 @@ public class CustomerDashboard {
 	
 	// find the last alloted product
 	public String lastallotedproduct(long bidderid) {
-		String name = "";
-		String query = "SELECT productid FROM bids WHERE status = 'alloted' and bidderid = ?  ORDER BY id DESC LIMIT 1";
+		String name = null;
+		String query = "SELECT productid FROM bids WHERE status = 'alloted' and bidderid = ?  ORDER BY productid DESC LIMIT 1";
 		 try {
 			 connection = DBConnect.getConnection();
 			 preparedstatement = connection.prepareStatement(query);

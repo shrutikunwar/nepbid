@@ -14,6 +14,15 @@
     <link rel="stylesheet" type="text/css" href="./assets/styles/admin.css">
     <link rel="stylesheet" type="text/css" href="./assets/styles/header.css">
     <title>Bidder Panel</title>
+    
+    <style type="text/css">
+    
+    .logout, button{
+    cursor:pointer;
+    	}
+    
+    </style>
+    
 </head>
 
 <body>

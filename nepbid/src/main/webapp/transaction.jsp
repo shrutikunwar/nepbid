@@ -117,10 +117,22 @@
             <input type="submit" value="Apply for Seller Account">
         </form>
         
-     <div class="message-box">
-            
-                <span class="message "></span>
-       
+      <div class="message-box">
+	<%  String s =(String) request.getAttribute("message"); 
+	
+		if(s != null){
+	%>
+                <span class="message "><%=s %></span>
+                
+                <%
+		}
+                %>
+                
+                
+        </div>
+        
+        <div class="backtologin">
+        <a href="SellerLogin.jsp">Go Back To Seller Login</a>
         </div>
     </div>
 </body>

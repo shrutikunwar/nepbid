@@ -1,12 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+pageEncoding="ISO-8859-1"%>
+<%@page import="DataInfoImpl.Datainfo,com.biddingsystem.model.Products,java.util.List"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ebid</title>
+  <title>Contact US</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     <link rel="stylesheet" href="assets/styles/contactus.css">
     <link rel="stylesheet" href="assets/styles/see.css">
 
@@ -169,6 +172,17 @@
       justify-content: space-between;
 
     }
+    
+    
+    
+    .button button{
+    margin : 5px;
+    background:blue;
+    color:white;
+    padding: 7px;
+    border-radius:15%;
+    border:none;
+    }
 </style>
 </head>
 <body>
@@ -184,7 +198,6 @@
      <a class="active" href="#"></a>
     <a class="active" href="home.jsp">Home</a>
     <a href="About.jsp">About Us</a>
-    <a href="HelpSection.Jsp">Help Section</a>
     <a href="contactus.jsp">Contact Us </a>
   
 
@@ -194,14 +207,31 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Adminlogin.jsp">Login</a>
-      </li>
+                    <%
+                   String user =(String) session.getAttribute("userRole");
+                    if("bidder".equals(user)){
+                    	Datainfo d = new Datainfo();
+                    	String name = (String) session.getAttribute("aid");
+
+                    %>
+                    <a class="nav-link" href="CustomerPanel.jsp"><%=d.biddername(Integer.parseInt(name)) %></a>
+                        
+                        
+                       <%
+                    } else{
+                       %>
+                       
+                        <%
+   							 String id = (String) session.getAttribute("aid");
+   							 Datainfo d = new Datainfo();
+    						
+    					%>
+    					<a class="nav-link" href="UserLogin.jsp">Login</a>
+                       
+                       <%
+                    }
+                       %>
+                    </li>
     </ul>
   </div>
 
@@ -226,69 +256,66 @@
         <div class="email details">
           <i class="fas fa-envelope"></i>
           <div class="topic">Email</div>
-          <div class="text-one">abcd@gmail.com</div>
-          <div class="text-two">xyz@apexcollege.edu.np</div>
+          <div class="text-one"><a href="https://mail.google.com/mail/?view=cm&to=nepbid@gmail.com
+          ">nepbid@gmail.com</a></div>
+          
+          <div class="text-two"><a href="https://mail.google.com/mail/?view=cm&to=dpm90797@gmail.com"
+          >dpm90797@gmail.com</a></div>
         </div>
       </div>
       <div class="right-side">
         <div class="topic-text">Send us a message</div>
         <p>If you have any types of quries , you can send me message from here.</p>
-      <form action="#">
+        
+      <form action="SendMessage" method="POST">
         <div class="input-box">
-          <input type="text" placeholder="Enter your name">
-        </div>
-        <div class="input-box">
-          <input type="text" placeholder="Enter your email">
-        </div>
-        <div class="input-box message-box">
-          
-        </div>
-        <div class="button">
-          <input type="button" value="Send Now" >
-          <input type="button" Value="SignUp">
+          <input type="text" name="name" placeholder="Enter your name" required>
         </div>
         
+        <div class="input-box message-box" style="word-wrap:break-word; width:770px;">
+             <input type="text" name="message" placeholder="Enter some message" required>
+        </div>
+        <input type="hidden" name="id" value="<%=(String) session.getAttribute("aid") %>">
+        <div class="button">
+          <button type="submit" >Send Now</button>
+          <button onclick="redirectToPage()">Sign Up</button>
+
+     <script>
+    function redirectToPage() {
+        // Redirect to the desired page
+        window.location.href = "home.jsp";
+    }
+   </script>
+        </div>
+       
       </form>
+      
+        <div class="message-box">
+	<%  String s =(String) request.getAttribute("message"); 
+	
+		if(s != null){
+	%>
+                <span class="message "><%=s %></span>
+                
+                <%
+		}
+                %>
+                
+                
+        </div>
+        
+        
+      
     </div>
     </div>
   </div>
   <footer>
-    <div class="content">
-      <div class="top">
-        <div class="logo-details">
-          
-          <span class="logo_name">NEP-BID</span>
-        </div>
-      </div>
-      <div class="link-boxes">
-        <ul class="box">
-          <li class="link_name">Company</li>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Contact us</a></li>
-          <li><a href="#">About us</a></li>
-          <li><a href="#">Get started</a></li>
-        </ul>
-        <ul class="box">
-          <li class="link_name">Services</li>
-          <li><a href="#">Buyying</a></li>
-          <li><a href="#">Selling</a></li>
-          <li><a href="#">Payment</a></li>
-        </ul>
-        <ul class="box">
-          <li class="link_name">Account</li>
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">My account</a></li>
-          <li><a href="#">Prefrences</a></li>
-          <li><a href="#">Purchase</a></li>
-        </ul>
-      </div>
-    </div>
     <div class="bottom-details">
       <div class="bottom_text">
-        <span class="copyright_text">Copyright © 2023  <a href="#">NEP-BID</a>All rights reserved</span>
+        <span class="copyright_text">Copyright © 2023  <a href="home.jsp">NEP-BID</a> All rights reserved</span>
         <span class="policy_terms">
-          <a href="#">Privacy policy</a>
-          <a href="#">Terms & condition</a>
+          <a href="About.jsp">Privacy policy</a> |
+          <a href="#">Terms And condition</a>
         </span>
       </div>
     </div>

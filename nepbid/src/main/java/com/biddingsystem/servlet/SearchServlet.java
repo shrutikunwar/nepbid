@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.biddingsystem.model.Bid;
-import com.biddingsystem.model.Products;
 
 import DataInfoImpl.Datainfo;
 

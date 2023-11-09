@@ -11,10 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.biddingsystem.model.Bidder;
 import com.biddingsystem.utill.DBConnect;
 
+import DataInfoImpl.CheckDupliacteData;
 import DataInfoImpl.PasswordHashing;
 
 @WebServlet("/RegBidder")
@@ -35,7 +34,13 @@ public class RegBidder extends HttpServlet {
 	        String password = request.getParameter("password");
 	        RequestDispatcher dispatcher = null;
 	        Connection conn = null;
+	        
+	        
 
+	        if(CheckDupliacteData.isBidderPresent(email) == true) {
+	        	request.setAttribute("message", "User Already Present");
+	        }
+	        else {
 	        try {
 	        	  // Insert the bidder into the database
 	            conn = DBConnect.getConnection();
@@ -62,6 +67,8 @@ public class RegBidder extends HttpServlet {
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
+	        	}
+
 	        
 	        dispatcher = request.getRequestDispatcher("BidderRegistration.jsp");
 	        dispatcher.forward(request, response);

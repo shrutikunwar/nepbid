@@ -87,6 +87,44 @@ pageEncoding="ISO-8859-1"%>
             }
             
             
+            
+            
+            
+ .emailSubscription {
+    display:flex;  
+
+}
+
+#emailInput {
+    width: 150px; 
+    margin-right:10px;
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    height:50px;
+    }
+
+#subscribeButton {
+    width: 80px; 
+    padding: 10px; 
+    background-color: #4caf50; 
+    color: white;
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer; 
+    height:50px;
+}
+
+#subscribeButton:hover {
+    background-color: #45a049; 
+}
+
+#subscribeMessage { 
+    font-weight: bold;
+}
+
+            
+            
         </style>
     </head>
 
@@ -105,7 +143,6 @@ pageEncoding="ISO-8859-1"%>
                 <a class="active" href="view.jsp"></a>
                 <a class="active" href="home.jsp">Home</a>
                 <a href="About.jsp">About Us</a>
-                <a href="Team.jsp">Team</a>
                 <a href="contactus.jsp">Contact Us </a>
 
 
@@ -253,22 +290,54 @@ pageEncoding="ISO-8859-1"%>
                     <h3>About Us</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
+                
                 <div class="footer-section">
                     <h3>Contact Us</h3>
                     <p>Email: info@example.com</p>
                     <p>Phone: 123-456-7890</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Subscribe</h3>
-                    <form class="subscribe-form">
-                        <input type="email" placeholder="Enter your email" required>
-                        <button type="submit">Subscribe</button>
-                    </form>
+                
+                <div class="emailSubscription">
+                    <input type="email" id="emailInput" placeholder="Enter your email">
+					<button id="subscribeButton">Subscribe</button>
+					<div id="subscribeMessage">
+					</div>
+					
                 </div>
             </div>
         </footer>
        </div>
 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("#subscribeButton").click(function() {
+            var email = $("#emailInput").val();
+
+            // Validate email address (you can add more validation if needed)
+            if (email && isValidEmail(email)) {
+                // Send a subscription request to your server
+                $.ajax({
+                    type: "POST",
+                    url: "SendEmail", // Replace this with your server endpoint URL
+                    data: { email: email },
+                    success: function(response) {
+                        // Handle the response from the server
+                        $("#subscribeMessage").text(response); // Display the response message to the user
+                    }
+                });
+            } else {
+                $("#subscribeMessage").text("Invalid email address. Please try again."); // Display error message
+            }
+        });
+
+        // Function to validate email address format
+        function isValidEmail(email) {
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    });
+     </script>
         
 
     </body>

@@ -158,6 +158,29 @@
                 <servlet-name>SearchServlet</servlet-name>
                 <url-pattern>/Search</url-pattern>
     </servlet-mapping>
+    
+    
+         <servlet>
+          <servlet-name>SendMessages</servlet-name>
+          <servlet-class>com.biddingsystem.servlet.SendMessages</servlet-class>
+  </servlet>
+    
+    <servlet-mapping>
+                <servlet-name>SendMessages</servlet-name>
+                <url-pattern>/SendMessage</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+     <servlet>
+          <servlet-name>MailService</servlet-name>
+          <servlet-class>com.biddingsystem.servlet.MailService</servlet-class>
+  </servlet>
+    
+    <servlet-mapping>
+                <servlet-name>MailService</servlet-name>
+                <url-pattern>/SendEmail</url-pattern>
+    </servlet-mapping>
   
  
 </web-app>

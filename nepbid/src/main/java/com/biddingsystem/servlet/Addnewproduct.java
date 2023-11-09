@@ -37,8 +37,8 @@ public class Addnewproduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
     	
-        System.out.println("Product received.");
-        PrintWriter out = response.getWriter();
+        @SuppressWarnings("unused")
+		PrintWriter out = response.getWriter();
         String savePath = "E:" +File.separator+"d"+File.separator+"nepbid"+File.separator+"src"+File.separator+"main"+File.separator
         		+"webapp"+File.separator+"assets"+File.separator+ SAVE_DIR;
             File fileSaveDir=new File(savePath);

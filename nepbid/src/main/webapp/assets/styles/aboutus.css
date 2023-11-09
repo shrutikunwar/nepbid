@@ -1,3 +1,4 @@
+
 .h1 {
     text-align: right;
     text-decoration-color:#45a049; 
@@ -9,6 +10,7 @@
     overflow: hidden;
   
   }
+  
   
   /* Style the links inside the navigation bar */
   .topnav a {
@@ -68,6 +70,7 @@
   }
   .p{
     padding-left: 10px;
+    
   }
   
   
@@ -116,4 +119,8 @@
   .subscribe-form button:hover {
     background-color: #45a049;
   }
+  
+  
+  
+  
   

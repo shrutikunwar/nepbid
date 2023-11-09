@@ -11,9 +11,11 @@ public class LoginData {
 	Connection connection= null;
 	PreparedStatement preparedStatement= null;
 	
+	
 	public boolean admin(String username,String password){
 		boolean isexists = false;
-		String sql = "select * from admin where Adminusername =? and Adminpassword =?";
+		
+		String sql = "select * from admin where Adminusername = ? and Adminpassword = ?";
 		
 		try {
 			connection = DBConnect.getConnection();

@@ -37,6 +37,7 @@
         }
 
         input[type="text"],
+        input[type="email"],
         input[type="password"],
         select {
             width: 100%;
@@ -98,14 +99,14 @@
         <h1>Admin Account Registration</h1>
         
         <form action="AdminReg" method="post">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required><br><br>
+            <label for="name">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
             
             <label for="contact">NIC:</label>
-            <input type="text" id="nic" name="nic" required><br><br>	
+            <input type="text" id="nic" name="nic" placeholder="Enter your NIC" required><br><br>	
 
             <label for="contact">Contact Number:</label>
-            <input type="text" id="contact" name="contact" required><br><br>
+            <input type="text" id="contact" name="contact" placeholder="Enter your Contact" required><br><br>
 
             <label for="address">Address:</label>
             <select id="address" name="address">
@@ -115,19 +116,32 @@
                 <option value="Biratnagar">Biratnagar</option>
             </select><br><br>
 
-            <label for="username">Email:</label>
-            <input type="text" id="username" name="username" required><br><br>
+            <label for="username">name:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your Email" required><br><br>
 
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br><br>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required><br><br>
 
             
             <input type="submit" value="Apply for Admin Account">
         </form>
         
-     <div class="message-box">
-                <span class="message "></span>
-
+      <div class="message-box">
+	<%  String s =(String) request.getAttribute("message"); 
+	
+		if(s != null){
+	%>
+                <span class="message "><%=s %></span>
+                
+                <%
+		}
+                %>
+                
+                
+        </div>
+        
+        <div class="backtologin">
+        <a href="Adminlogin.jsp">Go Back To Admin Login</a>
         </div>
     </div>
 </body>

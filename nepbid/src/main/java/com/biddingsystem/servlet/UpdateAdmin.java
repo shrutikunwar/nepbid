@@ -41,7 +41,7 @@ public class UpdateAdmin extends HttpServlet {
 		
 		
 		datainfo = new Datainfo();
-		boolean t = false;
+//		boolean t = false;
 		
 		switch(action) {
 		

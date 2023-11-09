@@ -216,7 +216,7 @@ public class Datainfo {
 		 try {
 			 connection = DBConnect.getConnection();
 			 Statement stmt = connection.createStatement();
-			 int r = stmt.executeUpdate(p);
+			 stmt.executeUpdate(p);
 			
 		} catch (SQLException e) {
 		}
@@ -247,13 +247,11 @@ public class Datainfo {
 			 
 			 while(resultSet.next()) {
 				 product.setProductid(resultSet.getInt("productid"));
-				 product.setProductname(resultSet.getString("productname"));			
-				 product.setProductcategory(resultSet.getString("category"));
-				 product.setStarting_bp(resultSet.getString("starting_bp"));
-				 product.setBidtime(resultSet.getString("bidtime"));
+				 product.setProductname(resultSet.getString("productname"));
 				 product.setProductdescription(resultSet.getString("description"));
+				 product.setStarting_bp(resultSet.getString("starting_bp"));
 				 product.setImage("assets"+File.separator+"productimages"+File.separator+resultSet.getString("image"));
-
+				 product.setProductcategory(resultSet.getString("category"));
 				 
 			 }
 		 }
@@ -322,7 +320,7 @@ public class Datainfo {
 	public int seller(int pid) {
 		int sid=0;
 		
-		String string = "select sellerid from newproduct where productid=?";
+		String string = "select sellerid from newproduct where productid = ?";
 		
 		try {
 			connection = DBConnect.getConnection();
@@ -356,7 +354,7 @@ public class Datainfo {
 	
 	
 	//fetch amount from product id
-	public boolean amount(int amt,int pid) {
+	public static boolean amount(long bidamount,int pid) {
 		boolean istrue = false;
 		String string = "select bidamount from bids where productid =?";
 		try {
@@ -369,7 +367,7 @@ public class Datainfo {
 			
 			while(resultSet.next()) {
 				int a = resultSet.getInt("bidamount");
-				if(amt >= a) {
+				if(bidamount >= a) {
 					istrue = true;
 				}
 			}
@@ -393,7 +391,7 @@ public class Datainfo {
 	
 	
 	//find product
-	public boolean findid(int id) {
+	public static boolean findid(int id) {
 		boolean istrue = false;
 		String string = "select * from bids where productid =?";
 		try {
@@ -428,7 +426,7 @@ public class Datainfo {
 	// after allotment
 	public boolean allotment(int id) {
 		boolean istrue = false;
-		String string = "update bids set status=? where productid =?";
+		String string = "update bids set status= ? where productid =?";
 		try {
 			connection = DBConnect.getConnection();
 			statement= connection.prepareStatement(string);
@@ -498,7 +496,7 @@ public class Datainfo {
 	
 	
 	//extract status
-	public String status(int id) {
+	public static String status(int id) {
 		String s ="";
 		String string = "select status from bids where productid="+id+"";
 		try {
@@ -798,7 +796,7 @@ public class Datainfo {
 			 connection = DBConnect.getConnection();
 			 Statement stmt = connection.createStatement();
 			 
-			 int r = stmt.executeUpdate(p);
+			 stmt.executeUpdate(p);
 			
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -890,7 +888,7 @@ public class Datainfo {
 				 connection = DBConnect.getConnection();
 				 Statement stmt = connection.createStatement();
 				 
-				 int r = stmt.executeUpdate(p);
+				stmt.executeUpdate(p);
 				
 			} catch (SQLException e) {
 				// TODO: handle exception
@@ -1170,6 +1168,145 @@ public class Datainfo {
 			}
 			
 			return bid;
+		}
+		
+		
+		
+		// store the message 
+		
+		public static boolean SendMessage(String id, String name, String message) {
+			
+			String query ="insert into messaging( id , name , message) values( ?, ?, ? )";
+			try {
+				connection = DBConnect.getConnection();
+				statement = connection.prepareStatement(query);
+				
+				statement.setInt(1, Integer.parseInt(id));
+				statement.setString(2, name);
+				statement.setString(3, message);
+
+				int r = statement.executeUpdate();
+				
+			if( r > 0)
+				return true;
+			
+			else
+			{
+				return false;
+			}
+			}
+			catch(SQLException e) {
+				return false;
+			}
+			finally {
+				try {
+					if(connection !=null) {
+						connection.close();
+					}
+					if(statement != null) {
+						statement.close();
+					}
+				}
+				catch(SQLException w) {
+					
+				}
+			}
+		}
+		
+		
+		
+		
+		
+		// subscribe users
+		public static void Subsrcibe(String email) {
+			
+			String query = "insert into Subscription(email) values( ? )";
+			
+			try {
+				connection = DBConnect.getConnection();
+				statement = connection.prepareStatement(query);
+				
+				statement.setString(1, email);
+				
+				
+				statement.executeUpdate();
+				
+				
+			}
+			catch(SQLException e) {
+				
+			}
+			finally {
+				try {
+					if(connection !=null) {
+						connection.close();
+					}
+					if(statement != null) {
+						statement.close();
+					}
+				}
+				catch(SQLException w) {
+					
+				}
+			}
+	
+			
+		}
+		
+		
+		
+		public static void BIds(int id,int bidderid,long bidamount) {
+			Connection connection= null;
+			PreparedStatement preparedStatement = null;
+			
+		    try {
+		    	connection = DBConnect.getConnection();
+		    	
+		    	if( findid(id)==false && "pending".equals(status(id))==false) {
+		    	    String	sqlString= "insert into bids(productid,bidderid,bidamount,status)values(?,?,?,?)";
+		    		preparedStatement = connection.prepareStatement(sqlString);
+		        	preparedStatement.setInt(1, id);
+		        	preparedStatement.setInt(2, bidderid);
+		        	preparedStatement.setLong(3, bidamount);
+		        	preparedStatement.setString(4, "pending");
+		        	preparedStatement.executeUpdate();
+		    	}
+		    	else {
+		    		if(amount(bidamount, id) == true  && "pending".equals(status(id))==true ) {
+		    	    String sqlString="update bids set bidderid =?,bidamount=? where productid=?";
+		    		preparedStatement = connection.prepareStatement(sqlString);
+		        	preparedStatement.setInt(1, bidderid);
+		        	preparedStatement.setLong(2, bidamount);
+		        	preparedStatement.setInt(3, id);
+		        	preparedStatement.executeUpdate();
+				}
+		    	}
+		    	
+		    	if( findid(id)==true && "pending".equals(status(id))==false) {
+		    	    String	sqlString= "insert into bids(productid,bidderid,bidamount,status)values(?,?,?,?)";
+		    		preparedStatement = connection.prepareStatement(sqlString);
+		        	preparedStatement.setInt(1, id);
+		        	preparedStatement.setInt(2, bidderid);
+		        	preparedStatement.setLong(3, bidamount);
+		        	preparedStatement.setString(4, "pending");
+		        	preparedStatement.executeUpdate();
+		    	}
+				
+			} catch (SQLException e) {
+				// TODO: handle exception
+			}finally {
+				try {
+					if(connection!= null) 
+						connection.close();
+					
+					if(preparedStatement!=null)
+						preparedStatement.close();
+				}
+				catch(SQLException e) {
+					
+				}
+				
+			}
 		}
 	 
 		

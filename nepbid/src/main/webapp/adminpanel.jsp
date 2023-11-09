@@ -76,6 +76,13 @@
                 
                  <hr>
                 <br>
+                
+                <li>
+                  <a href="Messages.jsp" target="content"><img src="./assets/images/Password.png">See Messages</a>
+                </li>
+                <hr>
+                <br>
+                
                  <li>
                     <div class="logout">
                         <form action="logout" method="post">

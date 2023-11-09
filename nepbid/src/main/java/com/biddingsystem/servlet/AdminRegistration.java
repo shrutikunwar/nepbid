@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.biddingsystem.model.Admin;
 import com.biddingsystem.utill.DBConnect;
 
+import DataInfoImpl.CheckDupliacteData;
 import DataInfoImpl.PasswordHashing;
 
 /**
@@ -41,26 +41,23 @@ public class AdminRegistration extends HttpServlet {
 		 RequestDispatcher dispatcher = null;
 	        Connection conn = null;
 		//retrieve data
-	    String name = request.getParameter("name");
+	    String name = request.getParameter("email");
         String nic = request.getParameter("nic");
         String contact = request.getParameter("contact");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
        
 
-        // Create a Bidder object and set its properties
-       Admin admin = new Admin();
-       admin.setName(name);
-       admin.setNIC(nic);
-       admin.setContact(contact);
-       admin.setUsername(username);
-       admin.setPassword(password);
-       
-
+        
+        if(CheckDupliacteData.isAdminPresent(Long.parseLong(contact))) {
+        	request.setAttribute("message", "User Already Present");
+        }
+        
+        else {
         try {
         	  // Insert the bidder into the database
             conn = DBConnect.getConnection();
-            String sql = "INSERT INTO admin (Adminname, AdminTelephone, AdminNIC, Adminusername,Adminpassword) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO admin (Adminemail, AdminTelephone, AdminNIC, Adminusername,Adminpassword) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement.setString(1, name);
@@ -82,6 +79,7 @@ public class AdminRegistration extends HttpServlet {
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
         }
         
         dispatcher = request.getRequestDispatcher("AdminRegistration.jsp");

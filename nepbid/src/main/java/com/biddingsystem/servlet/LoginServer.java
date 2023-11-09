@@ -30,6 +30,7 @@ public class LoginServer extends HttpServlet {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String action = request.getParameter("action");
+		
 
 		HttpSession session = null;
 		// check for the valid user.
@@ -37,7 +38,7 @@ public class LoginServer extends HttpServlet {
 		
 		switch (action) {
 		case "admin":
-			if(loginData.admin(id,PasswordHashing.hashpassword(password))) 
+			if(loginData.admin(id,PasswordHashing.hashpassword(password))== true) 
 			{
 				session = request.getSession();
 				session.setAttribute("aid",id);

@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.biddingsystem.model.Transaction;
 import com.biddingsystem.utill.DBConnect;
 
+import DataInfoImpl.CheckDupliacteData;
 import DataInfoImpl.PasswordHashing;
 
 
@@ -47,6 +47,11 @@ public class TransactionServlet extends HttpServlet {
 	        RequestDispatcher dispatcher = null;
 	        Connection conn = null;
 
+	        
+	        if(CheckDupliacteData.isSellerPresent(semail) == true) {
+	        	request.setAttribute("message", "User Already Present");
+	        }
+	        else {
 
 	        try {
 	            // Insert the seller into the database
@@ -75,6 +80,8 @@ public class TransactionServlet extends HttpServlet {
 	            conn.close();
 	        } catch (SQLException e) {
 	            e.printStackTrace();
+	        }
+	        
 	        }
 	        dispatcher = request.getRequestDispatcher("transaction.jsp");
 	        dispatcher.forward(request, response);

@@ -2,7 +2,7 @@
 use online_bidding_system;
 
     -- Admin Table
-        create table admin(id int auto_increment, Adminname varchar(30),AdminTelephone bigint,AdminNIC bigint, Adminusername varchar(30),Adminpassword varchar(30),primary key(id));
+        create table admin(id int auto_increment, Adminemail varchar(30),AdminTelephone bigint,AdminNIC bigint, Adminusername varchar(30),Adminpassword varchar(90),primary key(id));
 
     
     -- Seller Table
@@ -16,3 +16,9 @@ use online_bidding_system;
 
     -- bids Table
         create table bids(id int auto_increment, productid int , bidderid int, bidamount bigint,  status varchar(20), primary key(id), foreign key(bidderid) references Bidder(Bidderid) on delete cascade, foreign key(productid) references newproduct(productid) on delete cascade);
+
+    -- message table
+        create table messaging(sn bigint auto_increment primary key,id bigint, name varchar(30), message varchar(200));
+
+    -- Subscription tables
+        create table Subscription(SN bigint auto_increment primary key, email varchar(40));

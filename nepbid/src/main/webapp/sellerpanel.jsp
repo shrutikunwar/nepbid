@@ -11,6 +11,12 @@ pageEncoding="ISO-8859-1"%>
     <link rel="stylesheet" type="text/css" href="./assets/styles/admin.css">
     <link rel="stylesheet" type="text/css" href="./assets/styles/header.css">
     <title>Seller Panel</title>
+    
+    <style type="text/css">
+    .logout, button{
+    cursor:pointer;
+    	}
+    </style>
 </head>
 
 <body>

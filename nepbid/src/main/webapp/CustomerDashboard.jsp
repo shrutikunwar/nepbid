@@ -54,7 +54,7 @@ List<String> s = cb.LastThreeProducts(id);
         <h2>Notifications</h2>
         <div id="notifications">
          <%
-         if(name!=null){
+         if(name != null){
          %>
          <p> Last alloted product is <%=name%></p>
          <%

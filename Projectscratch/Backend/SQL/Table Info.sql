@@ -125,3 +125,26 @@ SELECT  bids.productid, bids.bidamount, bids.status, newproduct.productname FROM
 
 -- extract highest bid for seller
         select bids.bidamount from bids inner JOIN newproduct on bids.productid = newproduct.productid where newproduct.sellerid = 2 ORDER BY bids.bidamount DESC LIMIT 1;
+
+
+
+
+    -- messaging table
+
+    -- 1. fetch all messaging data
+         select * from messaging;
+        
+    -- 2. truncate the table
+        truncate table messaging;
+    -- 3. drop table
+        Drop table messaging;
+
+
+
+-- Subscription Table
+
+    -- 1. Fetch all data
+        select * from Subscription;
+
+    -- 2. insert into subscription
+        insert into Subscription(name , message) values( ?, ? );

@@ -164,6 +164,7 @@
 				<nav class="my-2 my-md-0 mr-md-3">
 					<a class="p-2 text-dark" href="home.jsp">Home</a>
 					<a class="p-2 text-dark" href="About.jsp">About Us</a>
+					 <a class="p-2 text-dark" href="contactus.jsp">Contact Us </a>
 
 				</nav>
 				<a class="btn btn-outline-primary" href="UserLogin.jsp">User Login</a>

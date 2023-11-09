@@ -50,6 +50,13 @@
     <link rel="stylesheet" href="assets/styles/base.css">
     
     <style>
+    
+    .product-container{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    }
 
     html,
             body {
@@ -153,17 +160,15 @@
     
 
     
-    <h1 style="color: navy blue; font-size: 26px; padding: 0px 0px" align="center">Product Information Table </h1>
+    <h1 style="color:navy blue; font-size: 26px; margin-bottom:40px; text-align:center;">Product Information Table </h1>
     
  
     <div class="container">
         <div class="product-container">
           <div class="product-image">
-            <!-- Add the image here -->
-            <img src="<%=p.getImage() %>" alt="Product Image">
+            <img src="<%=p.getImage() %>" alt="Product Image" width=300px; height=300px;>
           </div>
-
-         
+          <div class="productdata">
           <table>
               <tr>
                   <th class="product-details" colspan="2">Product Details</th>
@@ -190,19 +195,23 @@
               </tr>
               <!-- Additional rows can be added here -->
           </table>
-          <div class="modal-body" style="padding-top:10px;">
-      <form id="bid-form" action="bidp" method="post">
-      <div class="form-group">
-          <input type="hidden" id="bidid" name="bidderid" value=<%=(String) session.getAttribute("aid") %>>
-          <label for="bid-amount">Bid Amount:</label>
-          <input type="number" id="bidamount" name="bidamount" required>
-          <input type="hidden" id="pid" name="pid" value="<%=p.getProductid()%>">
-          <small id="bid-error" class="text-danger" style="display: none;">Please enter a bid amount greater than current price </small>
           
-      </div>
-      <br>
-      <button type="submit" class="btn btn-primary mt-1">Submit Bid</button>
-      </form>
+          <div class="modal-body" style="padding-top:10px;">
+           
+           
+           <form id="bid-form" action="bidp" method="post">
+      
+          <div class="form-group">
+                  <input type="hidden" id="bidid" name="bidderid" value=<%=(String) session.getAttribute("aid") %>>
+                  <label for="bid-amount">Bid Amount:</label>
+                  <input type="number" id="bidamount" name="bidamount" required>
+                  <input type="hidden" id="pid" name="pid" value="<%=p.getProductid()%>">
+                  <small id="bid-error" class="text-danger" style="display: none;">Please enter a bid amount greater than current price </small>
+                  
+         </div>
+          <br>
+            <button type="submit" class="btn btn-primary mt-1">Submit Bid</button>
+        </form>
       
       <script>
       document.getElementById("bid-form").addEventListener("submit", function(event) {
@@ -217,6 +226,13 @@
       </script>
       
       </div>
+          </div>
+          </div>
+          
+          </div>
+
+         
+          
       </body>
       </html>
   

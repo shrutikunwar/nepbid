@@ -53,14 +53,14 @@ background: #ff80bf;
 background: #fff;
 max-width: 350px;
 width: 100%;
-padding: 25px 30px;
+padding: 45px 30px;
 border-radius: 5px;
 box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
 }
 .container form .title{
 font-size: 30px;
 font-weight: 600;
-margin: 20px 0 10px 0;
+margin: 10px 0 5px 0;
 position: relative;
 }
 .container form .title:before{
@@ -183,8 +183,6 @@ margin: 20px 0 50px 0;
 </div>
 
   <div class="container">
-  
-  
 		<form action="RegBid" method="post">
 		   <div class="title">Sign Up as Bidder </div>
 				<div class="input-box underline">
@@ -213,8 +211,24 @@ margin: 20px 0 50px 0;
 			<div class="input-box button">
 				<input type="submit" name="" value="Continue">
 			</div>
-	
 	</form>
+	 <div class="message-box">
+	<%  String s =(String) request.getAttribute("message"); 
+	
+		if(s != null){
+	%>
+                <span class="message "><%=s %></span>
+                
+                <%
+		}
+                %>
+                
+                
+        </div>
+        
+        <div class="backtologin">
+        <a href="UserLogin.jsp">Go Back To User Login</a>
+        </div>
 
 
 
