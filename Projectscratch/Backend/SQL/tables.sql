@@ -1,5 +1,5 @@
 -- use database
-create database online_bidding_system;
+-- create database online_bidding_system;
 use online_bidding_system;
 
     -- Admin Table
