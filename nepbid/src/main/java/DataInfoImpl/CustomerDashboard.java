@@ -8,88 +8,140 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.biddingsystem.utill.DBConnect;
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
 
 public class CustomerDashboard {
 	public static Datainfo df = new Datainfo();
-	public static Connection connection= null;
+	public static Connection connection = null;
 	public static PreparedStatement preparedstatement = null;
-	
-	
-	
+
 	// find the last alloted product
 	public String lastallotedproduct(long bidderid) {
 		String name = null;
 		String query = "SELECT productid FROM bids WHERE status = 'alloted' and bidderid = ?  ORDER BY productid DESC LIMIT 1";
-		 try {
-			 connection = DBConnect.getConnection();
-			 preparedstatement = connection.prepareStatement(query);
-			 preparedstatement.setLong(1, bidderid);
-			 
-			 ResultSet r = preparedstatement.executeQuery();
-			 
-			 while(r.next()) {
-				 name = df.prname((int) r.getLong(1));
-			 }
-			 
-		 }
-		 catch(SQLException e) {
-			 
-		 }
-		 finally {
-			 try {
-				 if(connection != null) {
-					 connection.close();
-				 }
-				 if(preparedstatement != null) {
-					 preparedstatement.close();
-				 }
-			 }
-			 catch(SQLException e) {
-				 
-			 }
-		 }
-		
-		
+		try {
+			connection = DBConnect.getConnection();
+			preparedstatement = connection.prepareStatement(query);
+			preparedstatement.setLong(1, bidderid);
+
+			ResultSet r = preparedstatement.executeQuery();
+
+			while (r.next()) {
+				name = df.prname((int) r.getLong(1));
+			}
+
+		} catch (SQLException e) {
+
+		} finally {
+			try {
+				if (connection != null) {
+					connection.close();
+				}
+				if (preparedstatement != null) {
+					preparedstatement.close();
+				}
+			} catch (SQLException e) {
+
+			}
+		}
+
 		return name;
 	}
-	
-	 
-	public List<String> LastThreeProducts(int bidderid){
+
+	public List<String> LastThreeProducts(int bidderid) {
 		List<String> s = new ArrayList<>();
 		String query = "SELECT productid FROM bids WHERE status = 'pending' and bidderid = ?  ORDER BY id DESC LIMIT 3";
-		 try {
-			 connection = DBConnect.getConnection();
-			 preparedstatement = connection.prepareStatement(query);
-			 preparedstatement.setLong(1, bidderid);
-			 
-			 ResultSet r = preparedstatement.executeQuery();
-			 
-			 while(r.next()) {
-				 s.add(df.prname(r.getInt(1)));
-			 }
-			 
-		 }
-		 catch(SQLException e) {
-			 
-		 }
-		 finally {
-			 try {
-				 if(connection != null) {
-					 connection.close();
-				 }
-				 if(preparedstatement != null) {
-					 preparedstatement.close();
-				 }
-			 }
-			 catch(SQLException e) {
-				 
-			 }
-		 }
-		
+		try {
+			connection = DBConnect.getConnection();
+			preparedstatement = connection.prepareStatement(query);
+			preparedstatement.setLong(1, bidderid);
+
+			ResultSet r = preparedstatement.executeQuery();
+
+			while (r.next()) {
+				s.add(df.prname(r.getInt(1)));
+			}
+
+		} catch (SQLException e) {
+
+		} finally {
+			try {
+				if (connection != null) {
+					connection.close();
+				}
+				if (preparedstatement != null) {
+					preparedstatement.close();
+				}
+			} catch (SQLException e) {
+
+			}
+		}
+
 		return s;
 	}
-	
-	
-	
+
+	public static int FetchLastRowSellers() {
+		int row = 0;
+
+		String query = "select count(*) from sellers";
+		try {
+			connection = DBConnect.getConnection();
+			preparedstatement = connection.prepareStatement(query);
+
+			ResultSet r = preparedstatement.executeQuery();
+
+			while (r.next()) {
+				row = r.getInt(1);
+			}
+
+		} catch (SQLException e) {
+
+		} finally {
+			try {
+				if (connection != null) {
+					connection.close();
+				}
+				if (preparedstatement != null) {
+					preparedstatement.close();
+				}
+			} catch (SQLException e) {
+
+			}
+		}
+
+		return row;
+	}
+
+	public static int FetchLastRowBidder() {
+		int row = 0;
+
+		String query = "select count(*) from bidder";
+		try {
+			connection = DBConnect.getConnection();
+			preparedstatement = connection.prepareStatement(query);
+
+			ResultSet r = preparedstatement.executeQuery();
+
+			while (r.next()) {
+				row = r.getInt(1);
+			}
+
+		} catch (SQLException e) {
+
+		} finally {
+			try {
+				if (connection != null) {
+					connection.close();
+				}
+				if (preparedstatement != null) {
+					preparedstatement.close();
+				}
+			} catch (SQLException e) {
+
+			}
+		}
+
+		return row;
+	}
 
 }
