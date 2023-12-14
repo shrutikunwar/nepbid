@@ -112,7 +112,7 @@ public class Datainfo {
 				 product.setProductcategory(resultSet.getString("category"));
 				 product.setStarting_bp(resultSet.getString("starting_bp"));
 				 product.setProductdescription(resultSet.getString("description"));
-				 product.setImage("assets"+File.separator+"productimages"+File.separator+resultSet.getString("image"));
+				 product.setImage("D:/pics/"+resultSet.getString("image"));
 				 products.add(product);
 				 
 			 }

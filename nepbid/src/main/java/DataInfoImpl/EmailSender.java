@@ -5,8 +5,8 @@ import javax.mail.*;
 import javax.mail.internet.*;
 
 public class EmailSender {
-	static final String username = "mishrapwwan123@gmail.com";
-   static  final String password = "qqomvodjhgvzmvtg";
+	static final String username = "shrutikunwar78@gmail.com";
+   static  final String password = "loopkxyyvibykhyp";
      
 //    public static void main(String[] args) {
 //       

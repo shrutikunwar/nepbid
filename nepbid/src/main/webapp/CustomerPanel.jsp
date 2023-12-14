@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./assets/styles/admin.css">
+    <link rel="stylesheet" type="text/css" href="./assets/styles/Admin.css">
     <link rel="stylesheet" type="text/css" href="./assets/styles/header.css">
     <title>Bidder Panel</title>
     
