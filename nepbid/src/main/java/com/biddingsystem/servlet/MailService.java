@@ -41,7 +41,6 @@ public class MailService extends HttpServlet {
 			
 			EmailSender.SendEmail(Subject, message, email);
 
-			request.getRequestDispatcher("home.jsp").forward(request, response);
 
 	}
 

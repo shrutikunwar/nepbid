@@ -259,8 +259,8 @@ pageEncoding="ISO-8859-1"%>
           <div class="text-one"><a href="https://mail.google.com/mail/?view=cm&to=nepbid@gmail.com
           ">nepbid@gmail.com</a></div>
           
-          <div class="text-two"><a href="https://mail.google.com/mail/?view=cm&to=dpm90797@gmail.com"
-          >dpm90797@gmail.com</a></div>
+          <div class="text-two"><a href="https://mail.google.com/mail/?view=cm&to=shrutikunwar78@gmail.com"
+          >shrutikunwar78@gmail.com</a></div>
         </div>
       </div>
       <div class="right-side">

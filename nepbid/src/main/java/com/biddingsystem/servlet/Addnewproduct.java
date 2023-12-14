@@ -1,4 +1,4 @@
-package com.biddingsystem.servlet;
+	package com.biddingsystem.servlet;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +27,7 @@ maxRequestSize=1024*1024*50)
 public class Addnewproduct extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
-    private static final String SAVE_DIR="productimages";
+    private static final String SAVE_DIR="pics";
 
     public Addnewproduct() {
         super();
@@ -39,8 +39,7 @@ public class Addnewproduct extends HttpServlet {
     	
         @SuppressWarnings("unused")
 		PrintWriter out = response.getWriter();
-        String savePath = "E:" +File.separator+"d"+File.separator+"nepbid"+File.separator+"src"+File.separator+"main"+File.separator
-        		+"webapp"+File.separator+"assets"+File.separator+ SAVE_DIR;
+        String savePath = "D:"+File.separator+SAVE_DIR;
             File fileSaveDir=new File(savePath);
             if(!fileSaveDir.exists()){
                 fileSaveDir.mkdir();
@@ -53,6 +52,8 @@ public class Addnewproduct extends HttpServlet {
         String starting_bp = request.getParameter("bidprice");
         String selleridString = request.getParameter("sellerid");
         Part part = request.getPart("image");
+        
+        System.out.print(pname+" "+productdescription);
 
         
         String fileName=extractFileName(part);

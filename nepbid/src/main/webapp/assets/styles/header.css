@@ -12,7 +12,7 @@
        align-items: center;
        justify-content: center;
        padding: 10px 20px;
-       background-color: #ffffff;
+       background-color: black;
        color: #fff;
    }
    
@@ -35,7 +35,7 @@
    /* Navigation menu */
    
    .nav {
-       display: none;
+       display:;
        background-color: #444;
    }
    

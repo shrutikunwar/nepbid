@@ -262,6 +262,7 @@ pageEncoding="ISO-8859-1"%>
         for(Products pr:p){
         	String s = pr.getImage();
         %>
+<<<<<<< Updated upstream
                     <div>
                         <div class="image-container">
                             <img src="assets/images/<%=s %>" alt="Image 1">
@@ -276,6 +277,17 @@ pageEncoding="ISO-8859-1"%>
                         </div>
                     </div>
                     <%
+=======
+			<div>
+            <div class="image-container">
+                <img src="<%=s%>" alt="<%=s%>	">
+                <div class="description"><%=pr.getProductdescription() %> <br><%=pr.getProductname() %></div>
+                <div class="price"><%=pr.getStarting_bp() %></div>
+                <div class="links"><a href="view.jsp?id=<%=pr.getProductid()%>">Bid Now</a></div>
+            </div>
+             </div>
+         <%
+>>>>>>> Stashed changes
            }
          %>
             </div>

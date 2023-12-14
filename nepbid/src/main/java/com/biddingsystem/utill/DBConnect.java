@@ -11,7 +11,7 @@ public class DBConnect {
 	
     private static final String URL = "jdbc:mysql://localhost:3306/online_bidding_system";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "1424";
+    private static final String PASSWORD = "root";
 
     public static Connection getConnection() throws SQLException {
     	try {
