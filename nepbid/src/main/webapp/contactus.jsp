@@ -260,7 +260,11 @@ pageEncoding="ISO-8859-1"%>
           ">nepbid@gmail.com</a></div>
           
           <div class="text-two"><a href="https://mail.google.com/mail/?view=cm&to=shrutikunwar78@gmail.com"
+<<<<<<< Updated upstream
           >shrutikunwar78@gmail.com</a></div>
+=======
+          >Nepbid@gmail.com</a></div>
+>>>>>>> Stashed changes
         </div>
       </div>
       <div class="right-side">

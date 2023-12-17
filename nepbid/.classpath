@@ -8,22 +8,38 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+<<<<<<< Updated upstream
 	<classpathentry kind="lib" path="C:/Users/Dell/Documents/GitHub/nepbid/activation-1.1.1.jar">
+=======
+	<classpathentry kind="lib" path="C:/Users/Lenovo/Documents/GitHub/nepbid/activation-1.1.1.jar">
+>>>>>>> Stashed changes
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< Updated upstream
 	<classpathentry kind="lib" path="C:/Users/Dell/Documents/GitHub/nepbid/javaee-api-8.0.jar">
+=======
+	<classpathentry kind="lib" path="C:/Users/Lenovo/Documents/GitHub/nepbid/javaee-api-8.0.jar">
+>>>>>>> Stashed changes
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< Updated upstream
 	<classpathentry kind="lib" path="C:/Users/Dell/Documents/GitHub/nepbid/javax.mail.jar">
+=======
+	<classpathentry kind="lib" path="C:/Users/Lenovo/Documents/GitHub/nepbid/javax.mail.jar">
+>>>>>>> Stashed changes
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< Updated upstream
 	<classpathentry kind="lib" path="C:/Users/Dell/Documents/GitHub/nepbid/mysql-connector-java-8.0.26.jar">
+=======
+	<classpathentry kind="lib" path="C:/Users/Lenovo/Documents/GitHub/nepbid/mysql-connector-java-8.0.26.jar">
+>>>>>>> Stashed changes
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

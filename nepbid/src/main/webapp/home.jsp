@@ -280,7 +280,11 @@ pageEncoding="ISO-8859-1"%>
 =======
 			<div>
             <div class="image-container">
+<<<<<<< Updated upstream
                 <img src="<%=s%>" alt="<%=s%>	">
+=======
+                <img src="D:/pics<%=s %>" alt="Image 1">
+>>>>>>> Stashed changes
                 <div class="description"><%=pr.getProductdescription() %> <br><%=pr.getProductname() %></div>
                 <div class="price"><%=pr.getStarting_bp() %></div>
                 <div class="links"><a href="view.jsp?id=<%=pr.getProductid()%>">Bid Now</a></div>
